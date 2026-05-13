@@ -1,0 +1,22 @@
+{
+  "name": "Jane Doe - Portfolio",
+  "short_name": "Portfolio",
+  "description": "Software Engineer with X+ years of experience. Building performant, accessible web applications.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080818",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

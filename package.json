@@ -1,0 +1,57 @@
+{
+  "name": "react-portfolio-template",
+  "version": "1.0.0",
+  "description": "A data-driven developer portfolio template built with React, TypeScript, and Framer Motion. Fork, fill in your data, and deploy.",
+  "type": "module",
+  "homepage": "https://github.com/satishjhanwer/react-portfolio-tempalate#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/satishjhanwer/react-portfolio-tempalate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/satishjhanwer/react-portfolio-tempalate/issues"
+  },
+  "keywords": [
+    "portfolio",
+    "template",
+    "react",
+    "typescript",
+    "framer-motion",
+    "vite",
+    "developer-portfolio"
+  ],
+  "author": "Satish Jhanwer",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "preview": "vite preview",
+    "setup": "npx tsx scripts/setup.ts"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "devicon": "^2.17.0",
+    "framer-motion": "^12.38.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.12.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.3",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.59.1",
+    "vite": "^8.0.10"
+  }
+}

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        function applyTheme() {
+          var forced = new URLSearchParams(location.search).get('theme');
+          var h = new Date().getHours();
+          var t = forced !== null ? forced : h < 8 ? 'arctic' : h < 16 ? null : 'sunset';
+          if (t) document.documentElement.setAttribute('data-theme', t);
+          else document.documentElement.removeAttribute('data-theme');
+        }
+        applyTheme();
+        function scheduleNext() {
+          var h = new Date().getHours();
+          var next = h < 8 ? 8 : h < 16 ? 16 : 24;
+          var now = new Date();
+          var ms =
+            (next * 3600 -
+              (now.getHours() * 3600 +
+                now.getMinutes() * 60 +
+                now.getSeconds())) *
+              1000 +
+            200;
+          setTimeout(function () {
+            applyTheme();
+            scheduleNext();
+          }, ms);
+        }
+        scheduleNext();
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jane Doe - Software Engineer</title>
+    <meta
+      name="description"
+      content="Software Engineer with X+ years of experience. Building performant, accessible web applications."
+    />
+    <meta
+      property="og:title"
+      content="Jane Doe - Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Software Engineer with X+ years of experience. Building performant, accessible web applications."
+    />
+    <meta
+      property="og:image"
+      content="https://your-domain.com/og-image.png"
+    />
+    <meta property="og:url" content="https://your-domain.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Content Security Policy -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self'; font-src 'self' data: https://cdn.jsdelivr.net;"
+    />
+    <!-- Async Devicon Load -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+      />
+    </noscript>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jane Doe",
+        "jobTitle": "Software Engineer",
+        "url": "https://your-domain.com",
+        "sameAs": [
+          "https://github.com/your-username",
+          "https://linkedin.com/in/your-username"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

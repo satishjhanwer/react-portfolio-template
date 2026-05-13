@@ -1,0 +1,482 @@
+@keyframes meshMove1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(40px, -30px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+@keyframes meshMove2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-50px, 30px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+}
+
+@keyframes meshMove3 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(25px, 25px);
+  }
+}
+
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(2deg);
+  }
+}
+
+@keyframes floatChip1 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatChip2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(72px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(72px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit2 {
+  0% {
+    transform: rotate(180deg) translateX(52px) rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(540deg) translateX(52px) rotate(-540deg);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes gshift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.hero {
+  position: relative;
+  padding: 80px 40px 80px;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.meshBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.orb1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+  background: radial-gradient(circle, var(--purple-a28) 0%, transparent 70%);
+  animation: meshMove1 12s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 400px;
+  height: 400px;
+  bottom: -120px;
+  left: -80px;
+  background: radial-gradient(circle, var(--cyan-a20) 0%, transparent 70%);
+  animation: meshMove2 15s ease-in-out infinite;
+}
+
+.orb3 {
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 40%;
+  background: radial-gradient(circle, var(--purple-a12) 0%, transparent 70%);
+  animation: meshMove3 9s ease-in-out infinite;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.name {
+  line-height: 0.9;
+  margin-bottom: 32px;
+}
+
+.nThin {
+  display: block;
+  font-size: clamp(52px, 7vw, 92px);
+  font-weight: 200;
+  color: var(--white-a50);
+  letter-spacing: -0.03em;
+}
+
+.nBold {
+  display: block;
+  font-size: clamp(52px, 7vw, 92px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(
+    135deg,
+    var(--purple-light) 0%,
+    var(--purple) 40%,
+    var(--cyan) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gshift 6s ease infinite;
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.8em;
+  background: var(--cyan);
+  margin-left: 4px;
+  vertical-align: baseline;
+  animation: blink 1s step-end infinite;
+}
+
+.roles {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.chipP {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-base);
+  font-weight: 500;
+  background: var(--purple-a12);
+  color: var(--purple-light);
+  border: 1px solid var(--purple-a25);
+  backdrop-filter: blur(12px);
+}
+
+.chipC {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-base);
+  font-weight: 500;
+  background: var(--cyan-a08);
+  color: var(--cyan);
+  border: 1px solid var(--cyan-a30);
+  backdrop-filter: blur(12px);
+}
+
+.sep {
+  color: var(--bg-separator);
+  font-size: var(--fs-xl);
+}
+
+.tagline {
+  font-size: var(--fs-lg2);
+  font-weight: 400;
+  color: var(--text-soft);
+  max-width: 460px;
+  line-height: 1.8;
+  margin-bottom: 44px;
+}
+
+.tagline b {
+  color: var(--text-accent);
+  font-weight: 500;
+}
+
+.cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  padding: 14px 30px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  background: linear-gradient(135deg, var(--purple-dim), var(--purple));
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+}
+
+.btnGhost {
+  padding: 14px 30px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  background: linear-gradient(135deg, var(--purple-dim), var(--purple));
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btnGhost:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 420px;
+}
+
+.glowRing {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--purple-a15) 0%,
+    var(--cyan-a08) 50%,
+    transparent 70%
+  );
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.orbRing {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid var(--purple-a20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: float1 8s ease-in-out infinite;
+}
+
+.orbRing2 {
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan-a10);
+}
+
+.orbCenter {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--purple-a10);
+  border: 1px solid var(--purple-a25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-4xl);
+  backdrop-filter: blur(10px);
+}
+
+.od1 {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cyan);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  box-shadow: 0 0 16px var(--cyan);
+  animation: orbit 5s linear infinite;
+}
+
+.od2 {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--purple);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -4px 0 0 -4px;
+  box-shadow: 0 0 12px var(--purple);
+  animation: orbit2 8s linear infinite;
+}
+
+.floatChip {
+  position: absolute;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  background: var(--white-a04);
+  border: 1px solid var(--white-a10);
+  backdrop-filter: blur(12px);
+  color: var(--text-faint);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+.chipDot,
+.chipDot2 {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.chipDot {
+  background: var(--purple);
+  box-shadow: 0 0 6px var(--purple);
+}
+
+.chipDot2 {
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+}
+
+.chip1 {
+  top: 12%;
+  right: 0;
+  color: var(--purple-light);
+  border-color: var(--purple-a25);
+  background: var(--purple-a08);
+  animation: floatChip1 5s ease-in-out infinite;
+}
+
+.chip2 {
+  bottom: 18%;
+  right: 4%;
+  color: var(--cyan);
+  border-color: var(--cyan-a20);
+  background: var(--cyan-a06);
+  animation: floatChip2 7s ease-in-out infinite;
+}
+
+.chip3 {
+  bottom: 10%;
+  left: 0;
+  animation: floatChip1 6s 1s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .visual {
+    display: none;
+  }
+}

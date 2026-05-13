@@ -1,0 +1,255 @@
+@keyframes gshift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background: var(--nav-bg);
+  backdrop-filter: var(--blur-card);
+  border-bottom: 1px solid var(--purple-a08);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    var(--purple-light) 0%,
+    var(--purple) 40%,
+    var(--cyan) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gshift 6s ease infinite;
+}
+
+.logoCursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  /* Reset the text-fill for the cursor so it doesn't disappear if background-clip is used on parent */
+  -webkit-text-fill-color: var(--cyan);
+}
+
+.links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--cyan);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: var(--z-drawer);
+  flex-shrink: 0;
+}
+
+.bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text-secondary);
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.barTopOpen {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--cyan);
+}
+
+.barMidOpen {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.barBotOpen {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--cyan);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  background: var(--black-a55);
+  backdrop-filter: blur(2px);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-drawer);
+  width: min(320px, 85vw);
+  background: var(--drawer-bg);
+  border-left: 1px solid var(--purple-a15);
+  display: flex;
+  flex-direction: column;
+  padding: 80px 32px 48px;
+}
+
+.drawerStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.drawerLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawerLink {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 14px 0;
+  font-family: inherit;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 1px solid var(--purple-a08);
+  transition: color 0.2s;
+}
+
+.drawerLink:hover {
+  color: var(--cyan);
+}
+
+.drawerIndex {
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  color: var(--purple-a60);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 14px 20px;
+  }
+
+  .links,
+  .status {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 12px 16px;
+  }
+}

@@ -1,0 +1,50 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-separator);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--white-a04) 25%,
+    var(--white-a08) 50%,
+    var(--white-a04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: var(--white-a06);
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  object-fit: cover;
+}
+
+.loaded {
+  opacity: 1;
+}

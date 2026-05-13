@@ -1,0 +1,151 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+}
+
+.entryActive .content::before {
+  background: var(--purple);
+  border-color: var(--purple-light);
+  box-shadow: 0 0 15px var(--purple-a50);
+}
+
+.year {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-align: right;
+  padding-right: 28px;
+  padding-top: 4px;
+  line-height: 1.4;
+}
+
+.content {
+  padding: 0 0 36px 28px;
+  border-left: 1px solid var(--white-a06);
+  position: relative;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--purple);
+  box-shadow: 0 0 10px var(--purple-a25);
+}
+
+.role {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+
+.header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--white-a05);
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--white-a07);
+}
+
+.logoFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--purple-a20);
+  color: var(--purple-light);
+  font-weight: 700;
+  font-size: var(--fs-xl);
+}
+
+.org {
+  font-size: var(--fs-base);
+  color: var(--purple-light);
+  font-weight: 500;
+}
+
+.detail {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.downloadWrap {
+  margin-top: 40px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  background: var(--grad-full);
+  background-size: 200% 200%;
+  animation: gshift 4s ease infinite;
+  color: var(--white);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+@keyframes gshift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .year {
+    text-align: left;
+    padding-right: 0;
+  }
+
+  .content {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .content::before {
+    display: none;
+  }
+}
