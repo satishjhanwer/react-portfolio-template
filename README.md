@@ -4,14 +4,14 @@ A premium, data-driven developer portfolio built with **React**, **TypeScript**,
 
 ## ✨ Features
 
-- **Data-driven** — All content lives in `src/data/`. Edit text files, not code.
-- **3 auto-switching themes** — Indigo (day), Sunset (evening), Arctic (night). Customize or add your own.
-- **Framer Motion animations** — Scroll-triggered entrances with `prefers-reduced-motion` respect.
-- **Lazy-loaded sections** — Code-split for fast initial loads.
-- **PWA-ready** — Service worker, manifest, offline support out of the box.
-- **SEO optimized** — Meta tags, Open Graph, JSON-LD structured data, sitemap.
-- **WCAG 2.1 AA accessible** — Semantic HTML, keyboard navigation, skip links.
-- **Mobile-first responsive** — Looks great on all screen sizes.
+- **Data-driven** - All content lives in `src/data/`. Edit text files, not code.
+- **3 auto-switching themes** - Indigo (day), Sunset (evening), Arctic (night). Customize or add your own.
+- **Framer Motion animations** - Scroll-triggered entrances with `prefers-reduced-motion` respect.
+- **Lazy-loaded sections** - Code-split for fast initial loads.
+- **PWA-ready** - Service worker, manifest, offline support out of the box.
+- **SEO optimized** - Meta tags, Open Graph, JSON-LD structured data, sitemap.
+- **WCAG 2.1 AA accessible** - Semantic HTML, keyboard navigation, skip links.
+- **Mobile-first responsive** - Looks great on all screen sizes.
 
 ## 🏁 Quick Start
 
@@ -31,7 +31,7 @@ npm run setup
 npm run dev
 ```
 
-The setup wizard will prompt for your name, title, domain, email, and social links — then auto-update all the config files (`index.html`, `manifest.json`, `sitemap.xml`, etc.) for you.
+The setup wizard will prompt for your name, title, domain, email, and social links then auto-update all the config files (`index.html`, `manifest.json`, `sitemap.xml`, etc.) for you.
 
 ## 📁 Project Structure
 
@@ -45,7 +45,7 @@ The setup wizard will prompt for your name, title, domain, email, and social lin
 │   ├── sitemap.xml         # SEO sitemap (auto-updated by setup)
 │   └── sw.js               # Service worker
 ├── src/
-│   ├── data/               # ★ YOUR CONTENT — edit these files
+│   ├── data/               # ★ YOUR CONTENT edit these files
 │   │   ├── hero.ts         # Name, title, tagline
 │   │   ├── about.ts        # Bio, key stats
 │   │   ├── skills.ts       # Skill categories & icons
@@ -124,7 +124,7 @@ Don't need Awards? Open Source? Simply:
 1. Remove the `<Awards />` line from `src/App.tsx`
 2. Remove the `{ label: "awards", id: "awards" }` entry from `src/data/nav.ts`
 
-That's it — the section will disappear completely.
+That's it the section will disappear completely.
 
 ## 🚀 Deployment
 
@@ -167,8 +167,8 @@ npm run preview      # Preview production build locally
 
 ## 📄 License
 
-MIT — see [LICENSE](./LICENSE). Use it for anything.
+MIT - see [LICENSE](./LICENSE). Use it for anything.
 
 ---
 
-Built with ❤️ — inspired by modern developer portfolios.
+Built with ❤️ - inspired by modern developer portfolios.
