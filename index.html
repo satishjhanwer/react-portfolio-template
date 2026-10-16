@@ -5,11 +5,18 @@
     <script>
       (function () {
         function applyTheme() {
-          var forced = new URLSearchParams(location.search).get('theme');
+          var forced = new URLSearchParams(location.search).get("theme");
           var h = new Date().getHours();
-          var t = forced !== null ? forced : h < 8 ? 'arctic' : h < 16 ? null : 'sunset';
-          if (t) document.documentElement.setAttribute('data-theme', t);
-          else document.documentElement.removeAttribute('data-theme');
+          var t =
+            forced !== null
+              ? forced
+              : h < 8
+                ? "arctic"
+                : h < 16
+                  ? null
+                  : "sunset";
+          if (t) document.documentElement.setAttribute("data-theme", t);
+          else document.documentElement.removeAttribute("data-theme");
         }
         applyTheme();
         function scheduleNext() {
@@ -40,18 +47,12 @@
       name="description"
       content="Software Engineer with X+ years of experience. Building performant, accessible web applications."
     />
-    <meta
-      property="og:title"
-      content="Jane Doe - Software Engineer"
-    />
+    <meta property="og:title" content="Jane Doe - Software Engineer" />
     <meta
       property="og:description"
       content="Software Engineer with X+ years of experience. Building performant, accessible web applications."
     />
-    <meta
-      property="og:image"
-      content="https://your-domain.com/og-image.png"
-    />
+    <meta property="og:image" content="https://your-domain.com/og-image.png" />
     <meta property="og:url" content="https://your-domain.com/" />
     <meta name="twitter:card" content="summary_large_image" />
 

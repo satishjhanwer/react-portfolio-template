@@ -25,7 +25,7 @@ const rl = createInterface({ input: process.stdin, output: process.stdout });
 function ask(question: string, fallback = ""): Promise<string> {
   const suffix = fallback ? ` (${fallback})` : "";
   return new Promise((res) => {
-    rl.question(`  ${question}${suffix}: `, (answer: any) => {
+    rl.question(`  ${question}${suffix}: `, (answer: string) => {
       res(answer.trim() || fallback);
     });
   });
