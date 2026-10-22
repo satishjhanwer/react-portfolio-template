@@ -15,7 +15,7 @@ By taking part you agree to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Development setup
 
-You need [Node.js](https://nodejs.org) 22.18 or newer (the scripts in `scripts/` run TypeScript directly) and npm.
+You need [Node.js](https://nodejs.org) 24 or newer (the current LTS; the scripts in `scripts/` run TypeScript directly) and npm. With nvm, run `nvm use` to pick up the version in `.nvmrc`.
 
 ```bash
 git clone https://github.com/<you>/react-portfolio-template.git
