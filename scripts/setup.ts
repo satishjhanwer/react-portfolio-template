@@ -9,13 +9,16 @@ import { PLACEHOLDERS, cleanDomain, isTimeZone, personalize } from "./setup-lib.
 // everywhere they appear, then regenerates the icons and the contact card.
 
 const root = resolve(fileURLToPath(import.meta.url), "../..");
-const rl = createInterface({ input: process.stdin, output: process.stdout });
+const rl = createInterface({ input: process.stdin });
+const lines = rl[Symbol.asyncIterator]();
 
 async function ask(question: string, fallback = "", valid: (v: string) => boolean = () => true) {
   const suffix = fallback ? ` (${fallback})` : "";
   for (;;) {
-    const answer = (await rl.question(`  ${question}${suffix}: `)).trim() || fallback;
-    if (valid(answer)) {
+    process.stdout.write(`  ${question}${suffix}: `);
+    const { value, done } = await lines.next();
+    const answer = String(value ?? "").trim() || fallback;
+    if (done || valid(answer)) {
       return answer;
     }
     console.log("  That doesn't look right, try again.");
