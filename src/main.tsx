@@ -1,21 +1,41 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@fontsource/inter/200.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/800.css";
-import "@fontsource/inter/900.css";
+import fontsHref from "./fonts.css?url";
 import { App } from "./App";
+import { startWebVitals } from "./utils/webVitals";
+import { initPrefs } from "./utils/a11yPrefs";
+import { initPwa } from "./utils/pwa";
+import { logConsoleHint, startAnalytics } from "./utils/startup";
+import { site } from "./i18n/content";
+import { locale } from "./i18n/locale";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js");
-  });
+function preloadFonts() {
+  const fontsLink = document.createElement("link");
+  fontsLink.rel = "stylesheet";
+  fontsLink.href = fontsHref;
+  fontsLink.media = "print";
+  fontsLink.onload = () => {
+    fontsLink.media = "all";
+  };
+  document.head.appendChild(fontsLink);
 }
+
+function renderApp() {
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}
+
+if (locale !== "en") {
+  document.title = site.pageTitle;
+}
+
+initPrefs();
+preloadFonts();
+renderApp();
+initPwa();
+startWebVitals();
+logConsoleHint();
+startAnalytics();

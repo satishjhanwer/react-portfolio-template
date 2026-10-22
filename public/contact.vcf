@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Doe;Jane;;;
+FN:Jane Doe
+TITLE:Senior Frontend Engineer · Design Systems
+EMAIL;TYPE=INTERNET,WORK:hello@your-domain.com
+URL:https://your-domain.com/
+ADR;TYPE=WORK:;;;London;;;UK
+X-SOCIALPROFILE;TYPE=github:https://github.com/your-username
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/your-username/
+END:VCARD

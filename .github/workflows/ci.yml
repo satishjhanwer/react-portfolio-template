@@ -1,0 +1,39 @@
+name: CI
+
+# Lint, formatting and a production build on every push to main and every PR,
+# so a broken build is caught before it's deployed.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Lint, format & build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint (ESLint + Prettier on TS/TSX)
+        run: npm run lint
+
+      - name: Format check (CSS, JSON, Markdown, HTML…)
+        run: npm run format:check
+
+      - name: Type check + production build
+        run: npm run build

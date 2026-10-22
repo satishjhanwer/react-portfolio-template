@@ -1,0 +1,159 @@
+.root {
+  display: none;
+}
+
+@media print {
+  .root {
+    display: block;
+    color: var(--print-ink);
+    background: var(--print-paper);
+    font-family: var(--font-sans);
+    font-size: 9.5pt;
+    line-height: 1.45;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12pt;
+    border-bottom: 1.5pt solid var(--print-accent);
+    padding-bottom: 8pt;
+    margin-bottom: 10pt;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .headline {
+    font-size: 11pt;
+    font-weight: 600;
+    margin: 3pt 0 0;
+  }
+
+  .contacts {
+    color: var(--print-muted);
+    margin: 4pt 0 0;
+  }
+
+  .qr {
+    flex-shrink: 0;
+    margin: 0;
+    text-align: center;
+    color: var(--print-muted);
+    font-size: 7pt;
+  }
+
+  .qr img {
+    display: block;
+    width: 56pt;
+    height: 56pt;
+    margin: 0 auto 2pt;
+  }
+
+  .section {
+    margin-top: 10pt;
+  }
+
+  .heading {
+    color: var(--print-accent);
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 0.5pt solid var(--print-rule);
+    padding-bottom: 2pt;
+    margin: 0 0 5pt;
+    break-after: avoid;
+  }
+
+  .body {
+    margin: 2pt 0 0;
+  }
+
+  .bullets {
+    margin: 0;
+    padding-left: 12pt;
+  }
+
+  .bullets li + li {
+    margin-top: 2pt;
+  }
+
+  .skills {
+    margin: 0;
+  }
+
+  .skillRow {
+    display: grid;
+    grid-template-columns: 120pt 1fr;
+    gap: 8pt;
+    break-inside: avoid;
+  }
+
+  .skillRow + .skillRow {
+    margin-top: 2pt;
+  }
+
+  .skillRow dt {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    text-transform: uppercase;
+  }
+
+  .skillRow dd {
+    margin: 0;
+  }
+
+  .entry {
+    break-inside: avoid;
+  }
+
+  .entry + .entry {
+    margin-top: 6pt;
+  }
+
+  .entryHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12pt;
+  }
+
+  .entryTitle {
+    font-size: 10pt;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .org {
+    font-weight: 500;
+  }
+
+  .date {
+    color: var(--print-muted);
+    white-space: nowrap;
+  }
+
+  .tags {
+    color: var(--print-muted);
+    font-size: 8.5pt;
+    margin: 1pt 0 0;
+  }
+
+  .footer {
+    color: var(--print-muted);
+    font-size: 8pt;
+    border-top: 0.5pt solid var(--print-rule);
+    margin-top: 12pt;
+    padding-top: 4pt;
+  }
+}

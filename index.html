@@ -4,17 +4,20 @@
     <meta charset="UTF-8" />
     <script>
       (function () {
+        var themes = ["copper", "night", "sakura"];
+        function chosen() {
+          var q = new URLSearchParams(location.search).get("theme");
+          if (themes.indexOf(q) !== -1) return q;
+          try {
+            var s = localStorage.getItem("theme");
+            if (themes.indexOf(s) !== -1) return s;
+          } catch (e) {}
+          return null;
+        }
         function applyTheme() {
-          var forced = new URLSearchParams(location.search).get("theme");
+          var forced = chosen();
           var h = new Date().getHours();
-          var t =
-            forced !== null
-              ? forced
-              : h < 8
-                ? "arctic"
-                : h < 16
-                  ? null
-                  : "sunset";
+          var t = forced !== null ? forced : h < 8 ? "sakura" : h < 16 ? null : "night";
           if (t) document.documentElement.setAttribute("data-theme", t);
           else document.documentElement.removeAttribute("data-theme");
         }
@@ -23,13 +26,7 @@
           var h = new Date().getHours();
           var next = h < 8 ? 8 : h < 16 ? 16 : 24;
           var now = new Date();
-          var ms =
-            (next * 3600 -
-              (now.getHours() * 3600 +
-                now.getMinutes() * 60 +
-                now.getSeconds())) *
-              1000 +
-            200;
+          var ms = (next * 3600 - (now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds())) * 1000 + 200;
           setTimeout(function () {
             applyTheme();
             scheduleNext();
@@ -38,58 +35,89 @@
         scheduleNext();
       })();
     </script>
+    <script>
+      (function () {
+        try {
+          var p = JSON.parse(localStorage.getItem("a11y-prefs") || "{}");
+          var r = document.documentElement;
+          if (p.textSize === "115" || p.textSize === "130") r.setAttribute("data-text-size", p.textSize);
+          if (p.highContrast === true) r.setAttribute("data-contrast", "high");
+          if (p.readableFont === true) r.setAttribute("data-font", "readable");
+          if (p.reduceMotion === true) r.setAttribute("data-motion", "reduce");
+          if (p.systemCursor === true) r.setAttribute("data-cursor", "system");
+          if (p.underlineLinks === true) r.setAttribute("data-links", "underline");
+          if (["protanopia", "deuteranopia", "tritanopia", "achromatopsia"].indexOf(p.colorVision) !== -1)
+            r.setAttribute("data-vision", p.colorVision);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#e8843a" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jane Doe - Software Engineer</title>
+    <title>Jane Doe - Frontend Engineer</title>
     <meta
       name="description"
-      content="Software Engineer with X+ years of experience. Building performant, accessible web applications."
-    />
-    <meta property="og:title" content="Jane Doe - Software Engineer" />
+      content="Frontend engineer with {{YEARS_EXPERIENCE}} years of experience, building fast, accessible web apps." />
+    <meta property="og:title" content="Jane Doe - Frontend Engineer" />
     <meta
       property="og:description"
-      content="Software Engineer with X+ years of experience. Building performant, accessible web applications."
-    />
+      content="Frontend engineer with {{YEARS_EXPERIENCE}} years of experience, building fast, accessible web apps." />
     <meta property="og:image" content="https://your-domain.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Jane Doe - Senior Frontend Engineer, {{YEARS_EXPERIENCE}} years in software development" />
     <meta property="og:url" content="https://your-domain.com/" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://your-domain.com/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Jane Doe - Senior Frontend Engineer, {{YEARS_EXPERIENCE}} years in software development" />
 
-    <!-- Content Security Policy -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self'; font-src 'self' data: https://cdn.jsdelivr.net;"
-    />
-    <!-- Async Devicon Load -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-      media="print"
-      onload="this.media = 'all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-      />
-    </noscript>
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://avatars.githubusercontent.com https://media.licdn.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self' data:;" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Jane Doe",
-        "jobTitle": "Software Engineer",
+        "jobTitle": "Frontend Engineer",
         "url": "https://your-domain.com",
-        "sameAs": [
-          "https://github.com/your-username",
-          "https://linkedin.com/in/your-username"
-        ]
+        "sameAs": ["https://github.com/your-username", "https://linkedin.com/in/your-username"]
       }
     </script>
   </head>
 
   <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="cv-protanopia">
+          <feColorMatrix
+            type="matrix"
+            values="0.152286 1.052583 -0.204868 0 0  0.114503 0.786281 0.099216 0 0  -0.003882 -0.048116 1.051998 0 0  0 0 0 1 0" />
+        </filter>
+        <filter id="cv-deuteranopia">
+          <feColorMatrix
+            type="matrix"
+            values="0.367322 0.860646 -0.227968 0 0  0.280085 0.672501 0.047413 0 0  -0.011820 0.042940 0.968881 0 0  0 0 0 1 0" />
+        </filter>
+        <filter id="cv-tritanopia">
+          <feColorMatrix
+            type="matrix"
+            values="1.255528 -0.076749 -0.178779 0 0  -0.078411 0.930809 0.147602 0 0  0.004733 0.691367 0.303900 0 0  0 0 0 1 0" />
+        </filter>
+        <filter id="cv-achromatopsia">
+          <feColorMatrix
+            type="matrix"
+            values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0" />
+        </filter>
+      </defs>
+    </svg>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

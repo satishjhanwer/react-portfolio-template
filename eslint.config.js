@@ -4,11 +4,10 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 import { defineConfig, globalIgnores } from "eslint/config";
-import prettierPlugin from "eslint-plugin-prettier";
-import prettierConfig from "eslint-config-prettier";
+import prettierRecommended from "eslint-plugin-prettier/recommended";
 
 export default defineConfig([
-  globalIgnores(["dist", ".history"]),
+  globalIgnores(["dist", ".history", "coverage"]),
   {
     files: ["**/*.{ts,tsx}"],
     extends: [
@@ -16,16 +15,19 @@ export default defineConfig([
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
+      prettierRecommended,
     ],
-    plugins: {
-      prettier: prettierPlugin,
-    },
     rules: {
-      ...prettierConfig.rules,
-      "prettier/prettier": "error",
+      curly: ["error", "all"],
     },
     languageOptions: {
       globals: globals.browser,
+    },
+  },
+  {
+    files: ["src/i18n/locales/**/*.ts"],
+    rules: {
+      "no-irregular-whitespace": ["error", { skipTemplates: true }],
     },
   },
 ]);

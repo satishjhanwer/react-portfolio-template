@@ -1,0 +1,125 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-palette);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10vh 16px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--black-a55);
+  backdrop-filter: blur(6px);
+}
+
+.panel {
+  width: min(480px, 100%);
+  padding: 22px 24px 20px;
+  background: var(--drawer-bg);
+  border: 1px solid var(--purple-a20);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 64px var(--black-a55);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--text-secondary);
+  background: var(--white-a05);
+  border: 1px solid var(--white-a10);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.close:hover {
+  color: var(--cyan);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.intro {
+  margin-bottom: 14px;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px solid var(--white-a05);
+}
+
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.keys kbd {
+  display: inline-block;
+  min-width: 24px;
+  padding: 2px 7px;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  text-align: center;
+  color: var(--text-page);
+  background: var(--white-a05);
+  border: 1px solid var(--white-a12);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+}
+
+.label {
+  margin: 0;
+  font-size: var(--fs-md);
+  color: var(--text-body);
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

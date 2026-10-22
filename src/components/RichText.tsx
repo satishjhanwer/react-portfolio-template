@@ -27,7 +27,9 @@ function parseRichText(html: string): ReactNode {
   let keyCounter = 0;
 
   const pushText = (text: string) => {
-    if (!text) return;
+    if (!text) {
+      return;
+    }
     const target = stack.length > 0 ? stack[stack.length - 1].children : nodes;
     target.push(text);
   };
@@ -64,11 +66,7 @@ function parseRichText(html: string): ReactNode {
     } else if (isClosing) {
       if (stack.length > 0 && stack[stack.length - 1].tag === tagName) {
         const frame = stack.pop()!;
-        const element = createElement(
-          ALLOWED_TAGS[frame.tag],
-          { key: keyCounter++ },
-          ...frame.children,
-        );
+        const element = createElement(ALLOWED_TAGS[frame.tag], { key: keyCounter++ }, ...frame.children);
         pushNode(element);
       } else {
         pushText(match[0]);
@@ -90,8 +88,12 @@ function parseRichText(html: string): ReactNode {
     }
   }
 
-  if (nodes.length === 0) return null;
-  if (nodes.length === 1) return nodes[0];
+  if (nodes.length === 0) {
+    return null;
+  }
+  if (nodes.length === 1) {
+    return nodes[0];
+  }
   return createElement(Fragment, null, ...nodes);
 }
 

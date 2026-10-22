@@ -1,5 +1,6 @@
 import { Component } from "react";
 import type { ReactNode, ErrorInfo } from "react";
+import { site } from "../i18n/content";
 
 interface Props {
   children?: ReactNode;
@@ -34,9 +35,8 @@ export class ErrorBoundary extends Component<Props, State> {
             padding: "2rem",
             textAlign: "center",
             color: "var(--text-muted)",
-          }}
-        >
-          <p>Sorry, there was an error loading this section.</p>
+          }}>
+          <p>{site.sectionErrorMessage}</p>
         </div>
       );
     }

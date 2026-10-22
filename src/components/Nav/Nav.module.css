@@ -46,16 +46,11 @@
 }
 
 .logo {
-  font-size: 24px;
+  font-size: var(--fs-3xl);
   font-weight: 800;
   letter-spacing: -0.04em;
   cursor: pointer;
-  background: linear-gradient(
-    135deg,
-    var(--purple-light) 0%,
-    var(--purple) 40%,
-    var(--cyan) 100%
-  );
+  background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple) 40%, var(--cyan) 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -67,7 +62,6 @@
   display: inline-block;
   margin-left: 2px;
   animation: blink 1s step-end infinite;
-  /* Reset the text-fill for the cursor so it doesn't disappear if background-clip is used on parent */
   -webkit-text-fill-color: var(--cyan);
 }
 
@@ -86,6 +80,7 @@
   color: var(--text-secondary);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  white-space: nowrap;
   cursor: pointer;
   transition: color 0.2s;
 }
@@ -94,12 +89,133 @@
   color: var(--cyan);
 }
 
-.status {
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.prefsTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--text-secondary);
+  background: var(--white-a04);
+  border: 1px solid var(--purple-a15);
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.prefsTrigger svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.prefsTrigger svg circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.prefsTrigger:hover,
+.prefsTrigger[aria-expanded="true"] {
+  color: var(--cyan);
+  border-color: var(--cyan-a40);
+  background: var(--cyan-a06);
+}
+
+.prefsTrigger:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.paletteTrigger {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 6px 8px 6px 10px;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--white-a04);
+  border: 1px solid var(--purple-a15);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.paletteTrigger:hover {
+  color: var(--cyan);
+  border-color: var(--cyan-a40);
+  background: var(--cyan-a06);
+}
+
+.paletteTrigger:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.paletteIcon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.paletteKbd {
+  padding: 2px 7px;
+  font-family: inherit;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: var(--white-a05);
+  border: 1px solid var(--white-a10);
+  border-radius: var(--radius-pill);
+}
+
+.status,
+.drawerStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  font-family: inherit;
   font-size: var(--fs-sm);
   color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.status:hover,
+.drawerStatus:hover {
+  color: var(--cyan);
+}
+
+.status:focus-visible,
+.drawerStatus:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .dot {
@@ -185,12 +301,8 @@
 }
 
 .drawerStatus {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: var(--fs-sm);
-  color: var(--text-secondary);
   margin-bottom: 48px;
+  text-align: left;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -225,12 +337,34 @@
   color: var(--cyan);
 }
 
-.drawerIndex {
-  font-size: var(--fs-xs);
-  font-weight: 400;
-  color: var(--purple-a60);
-  letter-spacing: 0.1em;
-  flex-shrink: 0;
+.drawerQuick {
+  margin-top: 28px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--cyan);
+  background: var(--cyan-a06);
+  border: 1px solid var(--cyan-a25);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.drawerQuick:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.nav[data-compact] .links {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.nav[data-compact] .hamburger {
+  display: flex;
 }
 
 @media (max-width: 768px) {
@@ -245,6 +379,42 @@
 
   .hamburger {
     display: flex;
+  }
+
+  .actions {
+    gap: 12px;
+  }
+
+  .paletteKbd {
+    display: none;
+  }
+
+  .paletteText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .paletteTrigger {
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+
+  .paletteIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (hover: none) {
+  .paletteKbd {
+    display: none;
   }
 }
 

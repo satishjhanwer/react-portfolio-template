@@ -16,17 +16,15 @@
 }
 
 .card {
-  padding: 26px;
   border-radius: var(--radius-md);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   background: var(--white-a03);
   border: 1px solid var(--white-a07);
   backdrop-filter: var(--blur-card);
   position: relative;
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .card::before {
@@ -36,6 +34,18 @@
   border-radius: var(--radius-md);
   background: var(--grad-card);
   pointer-events: none;
+}
+
+.card:hover {
+  box-shadow: 0 8px 32px var(--black-a40);
+}
+
+.cardInner {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
 }
 
 .featured {
@@ -121,7 +131,7 @@
   border-radius: var(--radius-pill);
   font-size: var(--fs-sm);
   background: var(--white-a03);
-  color: var(--text-ghost);
+  color: var(--text-muted);
   border: 1px solid var(--white-a06);
 }
 
@@ -146,4 +156,42 @@
 
 .arrow:hover {
   background: var(--purple-a20);
+}
+
+.auditBtn {
+  align-self: flex-start;
+  margin-top: 16px;
+  min-height: 36px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--on-accent);
+  background: var(--grad-btn);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    filter 0.2s,
+    transform 0.2s;
+}
+
+.auditBtn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.auditBtn:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.demoSlot:empty {
+  display: none;
+}
+
+.demoSlot {
+  display: flex;
+  justify-content: center;
 }

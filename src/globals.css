@@ -1,19 +1,3 @@
-/**
- * ═══════════════════════════════════════════════════════
- *  GLOBAL STYLES & DESIGN TOKENS
- *
- *  This file defines the complete design system:
- *  - 3 color themes (Indigo, Sunset, Arctic) that auto-switch by time of day
- *  - Typography scale
- *  - Spacing & layout utilities
- *  - Global component styles
- *
- *  To customize colors, edit the CSS variables in :root (default theme)
- *  and the two alternate themes below. The setup script can help
- *  generate a custom palette — see README.md.
- * ═══════════════════════════════════════════════════════
- */
-
 *,
 *::before,
 *::after {
@@ -22,78 +6,87 @@
   padding: 0;
 }
 
-/* ═══════════════════════════════════════════════════════
-   DEFAULT THEME — INDIGO / EMERALD
-   Active 08:00–15:59 (or when no data-theme is set)
-═══════════════════════════════════════════════════════ */
 :root {
-  /* Core palette */
-  --bg: #080818;
-  --purple: #6366f1;
-  --purple-dim: #4f46e5;
-  --cyan: #34d399;
-  --text: #e0e0f0;
+  --swatch-copper-bg: #0c0500;
+  --swatch-copper-1: #e8843a;
+  --swatch-copper-2: #38bdf8;
+  --swatch-night-bg: #06060f;
+  --swatch-night-1: #a855f7;
+  --swatch-night-2: #22d3ee;
+  --swatch-sakura-bg: #0d0206;
+  --swatch-sakura-1: #ff8fab;
+  --swatch-sakura-2: #f9e4b7;
+  --bg: #0c0500;
+  --purple: #e8843a;
+  --purple-dim: #d4692a;
+  --cyan: #38bdf8;
+  --text: #f0e0d0;
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
 
   /* Extended palette */
-  --purple-light: #a5b4fc;
-  --text-muted: #8080b0;
-  --text-secondary: #9090c0;
-  --text-dim: #7070a8;
+  --purple-light: #f4a96a;
+  --text-muted: #c8a882;
+  --text-secondary: #d0b890;
+  --text-dim: #bca878;
 
-  /* Primary alpha variants */
-  --purple-a04: rgba(99, 102, 241, 0.04);
-  --purple-a06: rgba(99, 102, 241, 0.06);
-  --purple-a08: rgba(99, 102, 241, 0.08);
-  --purple-a10: rgba(99, 102, 241, 0.1);
-  --purple-a12: rgba(99, 102, 241, 0.12);
-  --purple-a15: rgba(99, 102, 241, 0.15);
-  --purple-a20: rgba(99, 102, 241, 0.2);
-  --purple-a22: rgba(99, 102, 241, 0.22);
-  --purple-a25: rgba(99, 102, 241, 0.25);
-  --purple-a28: rgba(99, 102, 241, 0.28);
-  --purple-a40: rgba(99, 102, 241, 0.4);
-  --purple-a60: rgba(99, 102, 241, 0.6);
-  --purple-a70: rgba(99, 102, 241, 0.7);
+  /* Copper alpha variants */
+  --purple-a04: rgba(232, 132, 58, 0.04);
+  --purple-a06: rgba(232, 132, 58, 0.06);
+  --purple-a08: rgba(232, 132, 58, 0.08);
+  --purple-a10: rgba(232, 132, 58, 0.1);
+  --purple-a12: rgba(232, 132, 58, 0.12);
+  --purple-a15: rgba(232, 132, 58, 0.15);
+  --purple-a20: rgba(232, 132, 58, 0.2);
+  --purple-a22: rgba(232, 132, 58, 0.22);
+  --purple-a25: rgba(232, 132, 58, 0.25);
+  --purple-a28: rgba(232, 132, 58, 0.28);
+  --purple-a40: rgba(232, 132, 58, 0.4);
+  --purple-a50: rgba(232, 132, 58, 0.5);
+  --purple-a60: rgba(232, 132, 58, 0.6);
+  --purple-a70: rgba(232, 132, 58, 0.7);
 
-  /* Accent alpha variants */
-  --cyan-a03: rgba(52, 211, 153, 0.03);
-  --cyan-a04: rgba(52, 211, 153, 0.04);
-  --cyan-a06: rgba(52, 211, 153, 0.06);
-  --cyan-a07: rgba(52, 211, 153, 0.07);
-  --cyan-a08: rgba(52, 211, 153, 0.08);
-  --cyan-a10: rgba(52, 211, 153, 0.1);
-  --cyan-a18: rgba(52, 211, 153, 0.18);
-  --cyan-a20: rgba(52, 211, 153, 0.2);
-  --cyan-a25: rgba(52, 211, 153, 0.25);
-  --cyan-a30: rgba(52, 211, 153, 0.3);
-  --cyan-a35: rgba(52, 211, 153, 0.35);
-  --cyan-a40: rgba(52, 211, 153, 0.4);
+  /* Ice blue alpha variants */
+  --cyan-a03: rgba(56, 189, 248, 0.03);
+  --cyan-a04: rgba(56, 189, 248, 0.04);
+  --cyan-a06: rgba(56, 189, 248, 0.06);
+  --cyan-a07: rgba(56, 189, 248, 0.07);
+  --cyan-a08: rgba(56, 189, 248, 0.08);
+  --cyan-a10: rgba(56, 189, 248, 0.1);
+  --cyan-a18: rgba(56, 189, 248, 0.18);
+  --cyan-a20: rgba(56, 189, 248, 0.2);
+  --cyan-a25: rgba(56, 189, 248, 0.25);
+  --cyan-a30: rgba(56, 189, 248, 0.3);
+  --cyan-a35: rgba(56, 189, 248, 0.35);
+  --cyan-a40: rgba(56, 189, 248, 0.4);
 
   /* White alpha variants */
   --white-a03: rgba(255, 255, 255, 0.03);
   --white-a04: rgba(255, 255, 255, 0.04);
+  --white-a05: rgba(255, 255, 255, 0.05);
   --white-a06: rgba(255, 255, 255, 0.06);
   --white-a07: rgba(255, 255, 255, 0.07);
   --white-a08: rgba(255, 255, 255, 0.08);
   --white-a10: rgba(255, 255, 255, 0.1);
   --white-a12: rgba(255, 255, 255, 0.12);
+  --white-a40: rgba(255, 255, 255, 0.4);
+  --white-a50: rgba(255, 255, 255, 0.5);
 
   /* Black alpha variants */
   --black-a40: rgba(0, 0, 0, 0.4);
   --black-a55: rgba(0, 0, 0, 0.55);
 
-  /* Text shades */
+  /* Text shades - warm copper tint */
   --white: #fff;
-  --text-page: #f0f0ff;
-  --text-heading: #c8c8f0;
-  --text-body: #a0a0c8;
-  --text-bright: #c0c0e8;
-  --text-soft: #8888b8;
-  --text-faint: #6060a0;
-  --text-accent: #a8a8d0;
-  --text-ghost: #3a3a60;
-  --bg-separator: #1e1e38;
+  --text-page: #f5ede0;
+  --text-heading: #e8d0b8;
+  --text-body: #c8b09c;
+  --text-bright: #e0c8b4;
+  --text-soft: #d4b898;
+  --text-faint: #cca880;
+  --text-accent: #ead8c0;
+  --text-ghost: #50382a;
+  --bg-separator: #1e1008;
 
   /* Type scale */
   --fs-2xs: 0.5625rem;
@@ -110,14 +103,9 @@
   --fs-5xl: 2.375rem;
 
   /* Gradients */
-  --grad-main: linear-gradient(135deg, #6366f1, #34d399);
-  --grad-full: linear-gradient(135deg, #4f46e5, #6366f1, #34d399);
-  --grad-card: linear-gradient(
-    135deg,
-    var(--purple-a06) 0%,
-    transparent 60%,
-    var(--cyan-a04) 100%
-  );
+  --grad-main: linear-gradient(135deg, #e8843a, #38bdf8);
+  --grad-full: linear-gradient(135deg, #d4692a, #e8843a, #38bdf8);
+  --grad-card: linear-gradient(135deg, rgba(232, 132, 58, 0.06) 0%, transparent 60%, rgba(56, 189, 248, 0.04) 100%);
 
   /* Border radius */
   --radius-sm: 10px;
@@ -125,9 +113,17 @@
   --radius-lg: 16px;
   --radius-pill: 100px;
 
+  --on-accent: var(--bg);
+  --grad-btn: linear-gradient(135deg, var(--purple-dim), var(--purple));
+  --grad-cta: var(--grad-full);
+
+  --status-good: #4ade80;
+  --status-warn: #fbbf24;
+  --status-poor: #f87171;
+
   /* Component backgrounds */
-  --nav-bg: rgba(8, 8, 24, 0.75);
-  --drawer-bg: rgba(10, 8, 24, 0.97);
+  --nav-bg: rgba(12, 5, 0, 0.75);
+  --drawer-bg: rgba(14, 7, 2, 0.97);
 
   /* Backdrop blur */
   --blur-card: blur(20px);
@@ -136,6 +132,8 @@
   --z-nav: 200;
   --z-backdrop: 210;
   --z-drawer: 220;
+  --z-palette: 300;
+  --z-toast: 400;
 }
 
 html {
@@ -227,6 +225,163 @@ svg {
   border-top: 1px solid var(--white-a04);
 }
 
+.timeline-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-progress {
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: calc(120px - 0.5px);
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, var(--timeline-accent), var(--timeline-accent-glow));
+  box-shadow: 0 0 10px var(--timeline-accent-glow);
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.timeline-entry {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+}
+
+.timeline-year {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-align: right;
+  padding-right: 28px;
+  padding-top: 4px;
+  line-height: 1.4;
+}
+
+.timeline-content {
+  padding: 0 0 36px 28px;
+  border-left: 1px solid var(--white-a06);
+  position: relative;
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--timeline-accent);
+  box-shadow: 0 0 10px var(--timeline-accent-glow);
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.timeline-entry[data-reached] .timeline-content::before,
+.timeline-entry[data-reached]::before {
+  background: var(--timeline-accent);
+  box-shadow:
+    0 0 0 4px var(--timeline-accent-glow),
+    0 0 16px var(--timeline-accent-glow);
+  transform: scale(1.15);
+}
+
+.timeline-content[data-active="true"]::before {
+  background: var(--purple);
+  border-color: var(--purple-light);
+  box-shadow: 0 0 15px var(--purple-a50);
+}
+
+.timeline-heading {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+
+.timeline-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.timeline-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--white-a05);
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--white-a07);
+}
+
+.timeline-detail {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .timeline-entry {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .timeline-year {
+    text-align: left;
+    padding-right: 0;
+  }
+
+  .timeline-entry {
+    position: relative;
+    padding: 0 0 28px 24px;
+    border-left: 1px solid var(--white-a06);
+  }
+
+  .timeline-content {
+    border-left: none;
+    padding: 0;
+  }
+
+  .timeline-content::before {
+    display: none;
+  }
+
+  .timeline-entry::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 3px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--timeline-accent);
+    box-shadow: 0 0 10px var(--timeline-accent-glow);
+    transition:
+      background 0.35s ease,
+      box-shadow 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  .timeline-entry:has(.timeline-content[data-active="true"])::before {
+    background: var(--purple);
+    border-color: var(--purple-light);
+    box-shadow: 0 0 15px var(--purple-a50);
+  }
+
+  .timeline-progress {
+    top: 8px;
+    left: -0.5px;
+  }
+}
+
 .skip-link {
   position: absolute;
   top: -100%;
@@ -234,7 +389,7 @@ svg {
   z-index: 9999;
   padding: 12px 24px;
   background: var(--purple);
-  color: var(--white);
+  color: var(--on-accent);
   font-size: var(--fs-lg);
   font-weight: 600;
   border-radius: var(--radius-sm);
@@ -247,149 +402,358 @@ svg {
 }
 
 /* ═══════════════════════════════════════════════════════
-   SUNSET THEME — 16:00–23:59  (Amber / Rose)
-   A warm, energetic palette for the evening.
+   NIGHT THEME - 16:00–23:59  (aurora purple · electric cyan)
 ═══════════════════════════════════════════════════════ */
-:root[data-theme="sunset"] {
+:root[data-theme="night"] {
   /* Core palette */
-  --bg: #0c0500;
-  --purple: #f59e0b;
-  --purple-dim: #d97706;
-  --cyan: #fb7185;
-  --text: #f0e0d0;
+  --bg: #06060f;
+  --purple: #a855f7;
+  --purple-dim: #7c3aed;
+  --cyan: #22d3ee;
+  --text: #e0e0f5;
 
   /* Extended palette */
-  --purple-light: #fbbf24;
-  --text-muted: #c8a882;
-  --text-secondary: #d0b890;
-  --text-dim: #bca878;
+  --purple-light: #c084fc;
+  --text-muted: #8080b0;
+  --text-secondary: #9090c0;
+  --text-dim: #7a7ab4;
 
-  /* Primary (amber) alpha variants */
-  --purple-a04: rgba(245, 158, 11, 0.04);
-  --purple-a06: rgba(245, 158, 11, 0.06);
-  --purple-a08: rgba(245, 158, 11, 0.08);
-  --purple-a10: rgba(245, 158, 11, 0.1);
-  --purple-a12: rgba(245, 158, 11, 0.12);
-  --purple-a15: rgba(245, 158, 11, 0.15);
-  --purple-a20: rgba(245, 158, 11, 0.2);
-  --purple-a22: rgba(245, 158, 11, 0.22);
-  --purple-a25: rgba(245, 158, 11, 0.25);
-  --purple-a28: rgba(245, 158, 11, 0.28);
-  --purple-a40: rgba(245, 158, 11, 0.4);
-  --purple-a60: rgba(245, 158, 11, 0.6);
-  --purple-a70: rgba(245, 158, 11, 0.7);
+  /* Primary (purple) alpha variants */
+  --purple-a04: rgba(168, 85, 247, 0.04);
+  --purple-a06: rgba(168, 85, 247, 0.06);
+  --purple-a08: rgba(168, 85, 247, 0.08);
+  --purple-a10: rgba(168, 85, 247, 0.1);
+  --purple-a12: rgba(168, 85, 247, 0.12);
+  --purple-a15: rgba(168, 85, 247, 0.15);
+  --purple-a20: rgba(168, 85, 247, 0.2);
+  --purple-a22: rgba(168, 85, 247, 0.22);
+  --purple-a25: rgba(168, 85, 247, 0.25);
+  --purple-a28: rgba(168, 85, 247, 0.28);
+  --purple-a40: rgba(168, 85, 247, 0.4);
+  --purple-a50: rgba(168, 85, 247, 0.5);
+  --purple-a60: rgba(168, 85, 247, 0.6);
+  --purple-a70: rgba(168, 85, 247, 0.7);
 
-  /* Secondary (rose) alpha variants */
-  --cyan-a03: rgba(251, 113, 133, 0.03);
-  --cyan-a04: rgba(251, 113, 133, 0.04);
-  --cyan-a06: rgba(251, 113, 133, 0.06);
-  --cyan-a07: rgba(251, 113, 133, 0.07);
-  --cyan-a08: rgba(251, 113, 133, 0.08);
-  --cyan-a10: rgba(251, 113, 133, 0.1);
-  --cyan-a18: rgba(251, 113, 133, 0.18);
-  --cyan-a20: rgba(251, 113, 133, 0.2);
-  --cyan-a25: rgba(251, 113, 133, 0.25);
-  --cyan-a30: rgba(251, 113, 133, 0.3);
-  --cyan-a35: rgba(251, 113, 133, 0.35);
-  --cyan-a40: rgba(251, 113, 133, 0.4);
+  /* Secondary (cyan) alpha variants */
+  --cyan-a03: rgba(34, 211, 238, 0.03);
+  --cyan-a04: rgba(34, 211, 238, 0.04);
+  --cyan-a06: rgba(34, 211, 238, 0.06);
+  --cyan-a07: rgba(34, 211, 238, 0.07);
+  --cyan-a08: rgba(34, 211, 238, 0.08);
+  --cyan-a10: rgba(34, 211, 238, 0.1);
+  --cyan-a18: rgba(34, 211, 238, 0.18);
+  --cyan-a20: rgba(34, 211, 238, 0.2);
+  --cyan-a25: rgba(34, 211, 238, 0.25);
+  --cyan-a30: rgba(34, 211, 238, 0.3);
+  --cyan-a35: rgba(34, 211, 238, 0.35);
+  --cyan-a40: rgba(34, 211, 238, 0.4);
 
-  /* Text shades — warm amber tint */
-  --text-page: #f5ede0;
-  --text-heading: #e8d0b8;
-  --text-body: #c8b09c;
-  --text-bright: #e0c8b4;
-  --text-soft: #d4b898;
-  --text-faint: #cca880;
-  --text-accent: #ead8c0;
-  --text-ghost: #50382a;
-  --bg-separator: #1e1008;
+  /* Text shades */
+  --text-page: #f0f0ff;
+  --text-heading: #c8c8f0;
+  --text-body: #a0a0c8;
+  --text-bright: #c0c0e8;
+  --text-soft: #8888b8;
+  --text-faint: #7474b0;
+  --text-accent: #a8a8d0;
+  --text-ghost: #3a3a60;
+  --bg-separator: #1e1e38;
 
   /* Gradients */
-  --grad-main: linear-gradient(135deg, #f59e0b, #fb7185);
-  --grad-full: linear-gradient(135deg, #d97706, #f59e0b, #fb7185);
-  --grad-card: linear-gradient(
-    135deg,
-    rgba(245, 158, 11, 0.06) 0%,
-    transparent 60%,
-    rgba(251, 113, 133, 0.04) 100%
-  );
+  --grad-main: linear-gradient(135deg, #a855f7, #22d3ee);
+  --grad-full: linear-gradient(135deg, #7c3aed, #a855f7, #22d3ee);
+  --grad-card: linear-gradient(135deg, rgba(168, 85, 247, 0.06) 0%, transparent 60%, rgba(34, 211, 238, 0.04) 100%);
+
+  --grad-btn: linear-gradient(135deg, var(--purple), var(--purple-light));
+  --grad-cta: linear-gradient(135deg, var(--purple), var(--purple-light), var(--cyan));
 
   /* Component backgrounds */
-  --nav-bg: rgba(12, 5, 0, 0.75);
-  --drawer-bg: rgba(14, 7, 2, 0.97);
+  --nav-bg: rgba(6, 6, 15, 0.75);
+  --drawer-bg: rgba(10, 8, 24, 0.97);
 }
 
 /* ═══════════════════════════════════════════════════════
-   ARCTIC THEME — 00:00–07:59  (Teal / Sky Blue)
-   A cool, calm palette for the late night / early morning.
+   SAKURA THEME - 00:00–07:59  (cherry blossom · ivory gold)
 ═══════════════════════════════════════════════════════ */
-:root[data-theme="arctic"] {
+:root[data-theme="sakura"] {
   /* Core palette */
-  --bg: #020c0c;
-  --purple: #14b8a6;
-  --purple-dim: #0d9488;
-  --cyan: #38bdf8;
-  --text: #e0f0f0;
+  --bg: #0d0206;
+  --purple: #ff8fab;
+  --purple-dim: #e8607a;
+  --cyan: #f9e4b7;
+  --text: #f5e8f0;
 
   /* Extended palette */
-  --purple-light: #5eead4;
-  --text-muted: #82b8b0;
-  --text-secondary: #90c8c0;
-  --text-dim: #78a8a0;
+  --purple-light: #ffb3c6;
+  --text-muted: #d0a8bc;
+  --text-secondary: #d8b8cc;
+  --text-dim: #c8a0b4;
 
-  /* Primary (teal) alpha variants */
-  --purple-a04: rgba(20, 184, 166, 0.04);
-  --purple-a06: rgba(20, 184, 166, 0.06);
-  --purple-a08: rgba(20, 184, 166, 0.08);
-  --purple-a10: rgba(20, 184, 166, 0.1);
-  --purple-a12: rgba(20, 184, 166, 0.12);
-  --purple-a15: rgba(20, 184, 166, 0.15);
-  --purple-a20: rgba(20, 184, 166, 0.2);
-  --purple-a22: rgba(20, 184, 166, 0.22);
-  --purple-a25: rgba(20, 184, 166, 0.25);
-  --purple-a28: rgba(20, 184, 166, 0.28);
-  --purple-a40: rgba(20, 184, 166, 0.4);
-  --purple-a60: rgba(20, 184, 166, 0.6);
-  --purple-a70: rgba(20, 184, 166, 0.7);
+  /* Primary (cherry blossom) alpha variants */
+  --purple-a04: rgba(255, 143, 171, 0.04);
+  --purple-a06: rgba(255, 143, 171, 0.06);
+  --purple-a08: rgba(255, 143, 171, 0.08);
+  --purple-a10: rgba(255, 143, 171, 0.1);
+  --purple-a12: rgba(255, 143, 171, 0.12);
+  --purple-a15: rgba(255, 143, 171, 0.15);
+  --purple-a20: rgba(255, 143, 171, 0.2);
+  --purple-a22: rgba(255, 143, 171, 0.22);
+  --purple-a25: rgba(255, 143, 171, 0.25);
+  --purple-a28: rgba(255, 143, 171, 0.28);
+  --purple-a40: rgba(255, 143, 171, 0.4);
+  --purple-a50: rgba(255, 143, 171, 0.5);
+  --purple-a60: rgba(255, 143, 171, 0.6);
+  --purple-a70: rgba(255, 143, 171, 0.7);
 
-  /* Secondary (sky blue) alpha variants */
-  --cyan-a03: rgba(56, 189, 248, 0.03);
-  --cyan-a04: rgba(56, 189, 248, 0.04);
-  --cyan-a06: rgba(56, 189, 248, 0.06);
-  --cyan-a07: rgba(56, 189, 248, 0.07);
-  --cyan-a08: rgba(56, 189, 248, 0.08);
-  --cyan-a10: rgba(56, 189, 248, 0.1);
-  --cyan-a18: rgba(56, 189, 248, 0.18);
-  --cyan-a20: rgba(56, 189, 248, 0.2);
-  --cyan-a25: rgba(56, 189, 248, 0.25);
-  --cyan-a30: rgba(56, 189, 248, 0.3);
-  --cyan-a35: rgba(56, 189, 248, 0.35);
-  --cyan-a40: rgba(56, 189, 248, 0.4);
+  /* Secondary (ivory gold) alpha variants */
+  --cyan-a03: rgba(249, 228, 183, 0.03);
+  --cyan-a04: rgba(249, 228, 183, 0.04);
+  --cyan-a06: rgba(249, 228, 183, 0.06);
+  --cyan-a07: rgba(249, 228, 183, 0.07);
+  --cyan-a08: rgba(249, 228, 183, 0.08);
+  --cyan-a10: rgba(249, 228, 183, 0.1);
+  --cyan-a18: rgba(249, 228, 183, 0.18);
+  --cyan-a20: rgba(249, 228, 183, 0.2);
+  --cyan-a25: rgba(249, 228, 183, 0.25);
+  --cyan-a30: rgba(249, 228, 183, 0.3);
+  --cyan-a35: rgba(249, 228, 183, 0.35);
+  --cyan-a40: rgba(249, 228, 183, 0.4);
 
-  /* Text shades — cool teal tint */
-  --text-page: #f0f8f8;
-  --text-heading: #c8e8e0;
-  --text-body: #a0c8c0;
-  --text-bright: #c0e0d8;
-  --text-soft: #88b8b0;
-  --text-faint: #60a098;
-  --text-accent: #a8d8d0;
-  --text-ghost: #2a4840;
-  --bg-separator: #081e1a;
+  /* Text shades - soft rose tint, kept bright for contrast */
+  --text-page: #fdf0f8;
+  --text-heading: #f0d8e8;
+  --text-body: #d8b8cc;
+  --text-bright: #e8d0dc;
+  --text-soft: #e0b8d0;
+  --text-faint: #d8a8c4;
+  --text-accent: #f0d8e8;
+  --text-ghost: #502040;
+  --bg-separator: #281018;
 
   /* Gradients */
-  --grad-main: linear-gradient(135deg, #14b8a6, #38bdf8);
-  --grad-full: linear-gradient(135deg, #0d9488, #14b8a6, #38bdf8);
-  --grad-card: linear-gradient(
-    135deg,
-    rgba(20, 184, 166, 0.06) 0%,
-    transparent 60%,
-    rgba(56, 189, 248, 0.04) 100%
-  );
+  --grad-main: linear-gradient(135deg, #ff8fab, #f9e4b7);
+  --grad-full: linear-gradient(135deg, #e8607a, #ff8fab, #f9e4b7);
+  --grad-card: linear-gradient(135deg, rgba(255, 143, 171, 0.06) 0%, transparent 60%, rgba(249, 228, 183, 0.04) 100%);
+
+  /* Component backgrounds - must match new --bg */
+  --nav-bg: rgba(13, 2, 6, 0.75);
+  --drawer-bg: rgba(18, 4, 10, 0.97);
+}
+
+/* ═══════════════════════════════════════════════════════
+   JAPANESE
+   Inter and Space Grotesk have no CJK glyphs, so Japanese falls back to the
+   system's Japanese fonts (no multi-MB webfont download). Latin text such as
+   names and tech terms still renders in Inter / Space Grotesk.
+═══════════════════════════════════════════════════════ */
+:root:lang(ja) {
+  --font-sans:
+    "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, "Noto Sans JP",
+    system-ui, sans-serif;
+  --font-display:
+    "Space Grotesk", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, "Noto Sans JP",
+    system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RETRO EASTER EGG - Konami code (src/hooks/useKonami.ts)
+   Phosphor green · amber CRT. Declared after the time themes so it wins over
+   them, and before the accessibility overrides so those still win over it.
+═══════════════════════════════════════════════════════ */
+:root[data-easter="retro"] {
+  /* Core palette */
+  --bg: #020a03;
+  --purple: #33ff66;
+  --purple-dim: #22cc4e;
+  --cyan: #ffb000;
+  --text: #c8ffd0;
+  --font-sans: ui-monospace, "Cascadia Code", Consolas, monospace;
+  --font-display: ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  /* Extended palette */
+  --purple-light: #7dff9c;
+  --text-muted: #8fd9a0;
+  --text-secondary: #9fe0ae;
+  --text-dim: #86cc96;
+
+  /* Primary (phosphor green) alpha variants */
+  --purple-a04: rgba(51, 255, 102, 0.04);
+  --purple-a06: rgba(51, 255, 102, 0.06);
+  --purple-a08: rgba(51, 255, 102, 0.08);
+  --purple-a10: rgba(51, 255, 102, 0.1);
+  --purple-a12: rgba(51, 255, 102, 0.12);
+  --purple-a15: rgba(51, 255, 102, 0.15);
+  --purple-a20: rgba(51, 255, 102, 0.2);
+  --purple-a22: rgba(51, 255, 102, 0.22);
+  --purple-a25: rgba(51, 255, 102, 0.25);
+  --purple-a28: rgba(51, 255, 102, 0.28);
+  --purple-a40: rgba(51, 255, 102, 0.4);
+  --purple-a50: rgba(51, 255, 102, 0.5);
+  --purple-a60: rgba(51, 255, 102, 0.6);
+  --purple-a70: rgba(51, 255, 102, 0.7);
+
+  /* Secondary (amber) alpha variants */
+  --cyan-a03: rgba(255, 176, 0, 0.03);
+  --cyan-a04: rgba(255, 176, 0, 0.04);
+  --cyan-a06: rgba(255, 176, 0, 0.06);
+  --cyan-a07: rgba(255, 176, 0, 0.07);
+  --cyan-a08: rgba(255, 176, 0, 0.08);
+  --cyan-a10: rgba(255, 176, 0, 0.1);
+  --cyan-a18: rgba(255, 176, 0, 0.18);
+  --cyan-a20: rgba(255, 176, 0, 0.2);
+  --cyan-a25: rgba(255, 176, 0, 0.25);
+  --cyan-a30: rgba(255, 176, 0, 0.3);
+  --cyan-a35: rgba(255, 176, 0, 0.35);
+  --cyan-a40: rgba(255, 176, 0, 0.4);
+
+  /* Text shades */
+  --text-page: #e6ffe9;
+  --text-heading: #c0f5c8;
+  --text-body: #a8e6b4;
+  --text-bright: #c8f5d0;
+  --text-soft: #9adfa8;
+  --text-faint: #8ad49a;
+  --text-accent: #b8f0c4;
+  --text-ghost: #1a4022;
+  --bg-separator: #0a2010;
+
+  /* Gradients */
+  --grad-main: linear-gradient(135deg, #33ff66, #ffb000);
+  --grad-full: linear-gradient(135deg, #22cc4e, #33ff66, #ffb000);
+  --grad-card: linear-gradient(135deg, rgba(51, 255, 102, 0.06) 0%, transparent 60%, rgba(255, 176, 0, 0.04) 100%);
 
   /* Component backgrounds */
-  --nav-bg: rgba(2, 12, 12, 0.75);
-  --drawer-bg: rgba(4, 14, 12, 0.97);
+  --nav-bg: rgba(2, 10, 3, 0.75);
+  --drawer-bg: rgba(4, 14, 6, 0.97);
+
+  /* CRT scanlines (decorative overlay below) */
+  --scanline: rgba(0, 0, 0, 0.22);
+}
+
+:root[data-easter="retro"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, var(--scanline) 2px 3px);
+}
+
+:root[data-text-size="115"] {
+  font-size: 115%;
+}
+
+:root[data-text-size="130"] {
+  font-size: 130%;
+}
+
+:root[data-contrast="high"] {
+  --bg: #000000;
+  --nav-bg: rgba(0, 0, 0, 0.94);
+  --drawer-bg: #000000;
+
+  --text-page: #ffffff;
+  --text-heading: #ffffff;
+  --text-bright: #ffffff;
+  --text-accent: #ffffff;
+  --text-body: #f2f2f2;
+  --text-soft: #ececec;
+  --text-secondary: #e6e6e6;
+  --text-muted: #dcdcdc;
+  --text-dim: #d4d4d4;
+  --text-faint: #cccccc;
+  --text-ghost: #9a9a9a;
+
+  /* Stronger surfaces and borders */
+  --white-a03: rgba(255, 255, 255, 0.08);
+  --white-a04: rgba(255, 255, 255, 0.1);
+  --white-a05: rgba(255, 255, 255, 0.12);
+  --white-a06: rgba(255, 255, 255, 0.22);
+  --white-a07: rgba(255, 255, 255, 0.24);
+  --white-a08: rgba(255, 255, 255, 0.28);
+  --white-a10: rgba(255, 255, 255, 0.34);
+  --white-a12: rgba(255, 255, 255, 0.38);
+
+  /* Retro easter egg: drop the scanline overlay */
+  --scanline: transparent;
+}
+
+:root[data-font="readable"] {
+  --font-sans: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-display: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+:root[data-links="underline"] a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+:root[data-vision="protanopia"] {
+  filter: url("#cv-protanopia");
+}
+
+:root[data-vision="deuteranopia"] {
+  filter: url("#cv-deuteranopia");
+}
+
+:root[data-vision="tritanopia"] {
+  filter: url("#cv-tritanopia");
+}
+
+:root[data-vision="achromatopsia"] {
+  filter: url("#cv-achromatopsia");
+}
+
+body.cursor-none,
+body.cursor-none * {
+  cursor: none !important;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[data-a11y-highlight] {
+  outline: 3px solid var(--status-poor) !important;
+  outline-offset: 4px !important;
+  scroll-margin: 96px;
+  animation: a11yPulse 1.2s ease-in-out 3;
+}
+
+@keyframes a11yPulse {
+  50% {
+    outline-offset: 9px;
+  }
+}
+
+:root[data-motion="reduce"] *,
+:root[data-motion="reduce"] *::before,
+:root[data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -400,5 +764,39 @@ svg {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PRINT
+   Printing (Ctrl/⌘+P or the palette) shows only the PrintResume
+   component, in ink on paper, whatever theme or preference is active.
+═══════════════════════════════════════════════════════ */
+@media print {
+  :root {
+    --print-ink: #16161d;
+    --print-muted: #4a4a57;
+    --print-rule: #c9c9d1;
+    --print-paper: #ffffff;
+    --print-accent: #6b3fa0;
+    filter: none !important;
+  }
+
+  @page {
+    margin: 14mm 16mm;
+  }
+
+  html,
+  body {
+    background: var(--print-paper) !important;
+    color: var(--print-ink);
+  }
+
+  body > :not(#root),
+  #root > :not([data-print-resume]),
+  body::before,
+  body::after,
+  .confetti-canvas {
+    display: none !important;
   }
 }

@@ -1,0 +1,30 @@
+.big {
+  margin-bottom: 6px;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-page);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stack li {
+  padding: 4px 10px;
+  font-size: var(--fs-sm);
+  color: var(--text-body);
+  background: var(--white-a04);
+  border: 1px solid var(--white-a10);
+  border-radius: var(--radius-pill);
+}
+
+.version {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
