@@ -179,6 +179,12 @@ npm run icons          # Regenerate logo & icons from your initials
 - **Icons**: [Devicon](https://devicon.dev)
 - **Fonts**: [Inter](https://rsms.me/inter/) and [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk)
 
+## 🤝 Contributing
+
+Improvements to the template are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) and the [Code of Conduct](./CODE_OF_CONDUCT.md), and report security issues as described in [SECURITY.md](./SECURITY.md).
+
+> **Using this as your own portfolio?** The community files (`CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `SUPPORT.md` and the issue and PR templates in `.github/`) are for this template repo. Delete or adapt them in your copy. The CI workflow and Dependabot config in `.github/` are worth keeping.
+
 ## 📄 License
 
 MIT - see [LICENSE](./LICENSE). Use it for anything.

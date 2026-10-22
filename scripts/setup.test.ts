@@ -1,5 +1,6 @@
 // @vitest-environment node
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -10,6 +11,7 @@ import {
   cleanDomain,
   initialsOf,
   personalize,
+  trackedTextFiles,
 } from "./setup-lib.ts";
 
 const answers: Answers = {
@@ -53,5 +55,30 @@ describe("setup", () => {
     expect(personalize(root, answers, ["a.ts", "b.ts"])).toEqual(["a.ts", "LICENSE"]);
     expect(readFileSync(join(root, "a.ts"), "utf-8")).toBe('name: "Ada Lovelace"');
     expect(readFileSync(join(root, "LICENSE"), "utf-8")).toBe(`Copyright (c) ${new Date().getFullYear()} Ada Lovelace`);
+  });
+});
+
+describe("trackedTextFiles", () => {
+  it("lists tracked text files except docs, community files and the setup scripts", () => {
+    const root = mkdtempSync(join(tmpdir(), "setup-"));
+    const files = [
+      "src/site.config.ts",
+      "index.html",
+      "README.md",
+      "CONTRIBUTING.md",
+      ".github/PULL_REQUEST_TEMPLATE.md",
+      "scripts/setup-lib.ts",
+      "public/photo.jpg",
+    ];
+    mkdirSync(join(root, "src"));
+    mkdirSync(join(root, ".github"));
+    mkdirSync(join(root, "scripts"));
+    mkdirSync(join(root, "public"));
+    for (const f of files) {
+      writeFileSync(join(root, f), "x");
+    }
+    execFileSync("git", ["init", "-q"], { cwd: root });
+    execFileSync("git", ["add", "."], { cwd: root });
+    expect(trackedTextFiles(root).sort()).toEqual(["index.html", "src/site.config.ts"]);
   });
 });

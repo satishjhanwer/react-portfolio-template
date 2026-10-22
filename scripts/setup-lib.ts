@@ -20,7 +20,7 @@ export const PLACEHOLDERS = {
   user: "your-username",
 };
 
-const SKIP = /^(README\.md|CLAUDE\.md|LICENSE|package-lock\.json|docs\/|scripts\/setup)/;
+const SKIP = /^(README\.md|CLAUDE\.md|CONTRIBUTING\.md|LICENSE|package-lock\.json|docs\/|\.github\/|scripts\/setup)/;
 const TEXT = /\.(ts|tsx|js|json|html|css|txt|xml|svg|md)$/;
 
 export function cleanDomain(input: string) {
