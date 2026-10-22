@@ -9,13 +9,8 @@ export const siteConfig: SiteConfig = {
     initials: "JD",
     logoCursor: "_",
     defaultLogo: "/default-logo.png",
-    timeZone: "Europe/London",
   },
   careerStart: { year: 2018, month: 6 },
-  analytics: {
-    cloudflareToken: "",
-    hosts: [],
-  },
   languageNames: { en: "English", es: "Español", fr: "Français", ja: "日本語" },
   navLinks: [
     { id: "about" },
@@ -44,7 +39,6 @@ export const siteConfig: SiteConfig = {
       { id: "years", style: "G" },
     ],
   },
-  recruiterEntry: { queryParam: { key: "mode", value: "recruiter" } },
   stats: [{ id: "years" }, { id: "degree", value: "B.Sc." }, { id: "oss", value: "OSS" }],
   impact: [
     { id: "users", value: 2, suffix: "M+" },
@@ -103,7 +97,6 @@ export const siteConfig: SiteConfig = {
     {
       id: "designSystem",
       title: "Accessible Design System",
-      liveAudit: true,
       tags: [
         { label: "React", style: "P" },
         { label: "TypeScript", style: "P" },
@@ -174,15 +167,6 @@ export const siteConfig: SiteConfig = {
   ],
   email: "hello@your-domain.com",
   ctaArrow: "→",
-  greetingSalutations: [
-    { id: "morning", from: 5, to: 12 },
-    { id: "afternoon", from: 12, to: 17 },
-    { id: "evening", from: 17, to: 22 },
-  ],
-  greetingReplies: [
-    { id: "workHours", from: 9, to: 17 },
-    { id: "evening", from: 17, to: 24 },
-  ],
   socials: [
     {
       label: "GitHub",
@@ -205,8 +189,6 @@ export const siteConfig: SiteConfig = {
     navigate: "#",
     home: "↑",
     hire: "●",
-    recruiter: "⚡",
-    audit: "✓",
     prefs: "Aa",
     install: "⤓",
     copy: "@",
@@ -218,27 +200,8 @@ export const siteConfig: SiteConfig = {
     retro: "👾",
     theme: "◐",
     shortcuts: "⌨",
-    contactCard: "☎",
-    qr: "▣",
-    trust: "§",
-    colophon: "⚙",
   },
   secretMinQuery: 3,
-  trustReviewed: "2026-10-22",
-  workingHours: { start: 9, end: 17 },
-  visitorHours: { start: 9, end: 18 },
-  overlapZones: [
-    "America/Los_Angeles",
-    "America/New_York",
-    "America/Sao_Paulo",
-    "Europe/London",
-    "Europe/Berlin",
-    "Asia/Dubai",
-    "Asia/Kolkata",
-    "Asia/Singapore",
-    "Asia/Tokyo",
-    "Australia/Sydney",
-  ],
   shortcuts: [
     { id: "palette", keys: ["mod", "K"] },
     { id: "search", keys: ["/"] },
@@ -261,14 +224,6 @@ export const siteConfig: SiteConfig = {
     "a",
   ],
   easterEgg: { theme: "retro", toastMs: 4500 },
-  recruiter: {
-    careerCount: 3,
-    links: [
-      { id: "resume", kind: "resume", primary: true },
-      { id: "email", kind: "email" },
-      { id: "linkedin", kind: "social", social: "LinkedIn" },
-    ],
-  },
   a11yPrefs: {
     textSizeOptions: [
       { value: "100", label: "100%" },
@@ -276,11 +231,6 @@ export const siteConfig: SiteConfig = {
       { value: "130", label: "130%" },
     ],
     visionOptions: ["none", "protanopia", "deuteranopia", "tritanopia", "achromatopsia"],
-  },
-  a11yAuditImpactOrder: ["critical", "serious", "moderate", "minor"],
-  webVitals: {
-    summary: ["LCP", "CLS", "INP"],
-    order: ["LCP", "CLS", "INP", "FCP", "TTFB"],
   },
   printSiteUrl: "your-domain.com",
 };

@@ -42,21 +42,6 @@
     margin: 4pt 0 0;
   }
 
-  .qr {
-    flex-shrink: 0;
-    margin: 0;
-    text-align: center;
-    color: var(--print-muted);
-    font-size: 7pt;
-  }
-
-  .qr img {
-    display: block;
-    width: 56pt;
-    height: 56pt;
-    margin: 0 auto 2pt;
-  }
-
   .section {
     margin-top: 10pt;
   }

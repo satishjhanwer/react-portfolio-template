@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
 
-export const THEMES = ["copper", "night", "sakura"] as const;
+export const THEMES = ["indigo", "sunset", "arctic"] as const;
 export type Theme = (typeof THEMES)[number];
 export type ThemeChoice = "auto" | Theme;
 
@@ -10,7 +10,7 @@ const QUERY_PARAM = "theme";
 const isTheme = (value: unknown): value is Theme => THEMES.includes(value as Theme);
 
 export function themeForHour(hour: number): Theme {
-  return hour < 8 ? "sakura" : hour < 16 ? "copper" : "night";
+  return hour < 8 ? "arctic" : hour < 16 ? "indigo" : "sunset";
 }
 
 function readSaved(): ThemeChoice {
@@ -36,7 +36,7 @@ export function applyTheme(next: ThemeChoice, now = new Date()) {
     return;
   }
   const t = themeForHour(now.getHours());
-  if (t === "copper") {
+  if (t === "indigo") {
     root.removeAttribute("data-theme");
   } else {
     root.setAttribute("data-theme", t);
@@ -49,7 +49,7 @@ export function getThemeChoice() {
 
 export function currentTheme(): Theme {
   const attr = document.documentElement.getAttribute("data-theme");
-  return isTheme(attr) ? attr : "copper";
+  return isTheme(attr) ? attr : "indigo";
 }
 
 function save(next: ThemeChoice) {

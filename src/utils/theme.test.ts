@@ -23,12 +23,12 @@ afterEach(() => {
 
 describe("themeForHour", () => {
   it.each([
-    [0, "sakura"],
-    [7, "sakura"],
-    [8, "copper"],
-    [15, "copper"],
-    [16, "night"],
-    [23, "night"],
+    [0, "arctic"],
+    [7, "arctic"],
+    [8, "indigo"],
+    [15, "indigo"],
+    [16, "sunset"],
+    [23, "sunset"],
   ])("%i:00 is %s", async (hour, theme) => {
     const { themeForHour } = await loadTheme();
     expect(themeForHour(hour)).toBe(theme);
@@ -41,7 +41,7 @@ describe("saved choice", () => {
   });
 
   it("restores a saved theme", async () => {
-    expect((await loadTheme("sakura")).getThemeChoice()).toBe("sakura");
+    expect((await loadTheme("arctic")).getThemeChoice()).toBe("arctic");
   });
 
   it("ignores an unknown saved value", async () => {
@@ -55,20 +55,20 @@ describe("saved choice", () => {
 });
 
 describe("applyTheme", () => {
-  it("sets an explicit theme, copper included", async () => {
+  it("sets an explicit theme, indigo included", async () => {
     const { applyTheme } = await loadTheme();
-    applyTheme("night");
-    expect(attr()).toBe("night");
-    applyTheme("copper");
-    expect(attr()).toBe("copper");
+    applyTheme("sunset");
+    expect(attr()).toBe("sunset");
+    applyTheme("indigo");
+    expect(attr()).toBe("indigo");
   });
 
-  it("follows the clock on auto, using the default for copper", async () => {
+  it("follows the clock on auto, using the default for indigo", async () => {
     const { applyTheme } = await loadTheme();
     applyTheme("auto", new Date(2026, 9, 22, 20, 0));
-    expect(attr()).toBe("night");
+    expect(attr()).toBe("sunset");
     applyTheme("auto", new Date(2026, 9, 22, 3, 0));
-    expect(attr()).toBe("sakura");
+    expect(attr()).toBe("arctic");
     applyTheme("auto", new Date(2026, 9, 22, 12, 0));
     expect(attr()).toBeNull();
   });
@@ -79,25 +79,25 @@ describe("setThemeChoice", () => {
     const { setThemeChoice, subscribeTheme, getThemeChoice } = await loadTheme();
     const listener = vi.fn();
     const unsubscribe = subscribeTheme(listener);
-    setThemeChoice("sakura");
-    expect(getThemeChoice()).toBe("sakura");
-    expect(localStorage.getItem("theme")).toBe("sakura");
-    expect(attr()).toBe("sakura");
+    setThemeChoice("arctic");
+    expect(getThemeChoice()).toBe("arctic");
+    expect(localStorage.getItem("theme")).toBe("arctic");
+    expect(attr()).toBe("arctic");
     expect(listener).toHaveBeenCalled();
     unsubscribe();
   });
 
   it("forgets the saved theme when going back to auto", async () => {
-    const { setThemeChoice } = await loadTheme("night");
+    const { setThemeChoice } = await loadTheme("sunset");
     setThemeChoice("auto");
     expect(localStorage.getItem("theme")).toBeNull();
     expect(attr()).toBeNull();
   });
 
   it("drops ?theme= so the visitor's choice wins", async () => {
-    window.history.replaceState(null, "", "/?theme=night&lang=fr#about");
+    window.history.replaceState(null, "", "/?theme=sunset&lang=fr#about");
     const { setThemeChoice } = await loadTheme();
-    setThemeChoice("copper");
+    setThemeChoice("indigo");
     expect(window.location.search).toBe("?lang=fr");
     expect(window.location.hash).toBe("#about");
   });
@@ -108,8 +108,8 @@ describe("setThemeChoice", () => {
     vi.spyOn(Storage.prototype, "removeItem").mockImplementation(() => {
       throw new Error("blocked");
     });
-    setThemeChoice("night");
-    expect(attr()).toBe("night");
+    setThemeChoice("sunset");
+    expect(attr()).toBe("sunset");
     setThemeChoice("auto");
     expect(attr()).toBeNull();
   });
@@ -119,18 +119,18 @@ describe("hooks", () => {
   it("useThemeChoice and useCurrentTheme follow changes", async () => {
     const { setThemeChoice, useCurrentTheme, useThemeChoice } = await loadTheme();
     const { result } = renderHook(() => ({ choice: useThemeChoice(), current: useCurrentTheme() }));
-    expect(result.current).toEqual({ choice: "auto", current: "copper" });
-    act(() => setThemeChoice("night"));
-    expect(result.current).toEqual({ choice: "night", current: "night" });
+    expect(result.current).toEqual({ choice: "auto", current: "indigo" });
+    act(() => setThemeChoice("sunset"));
+    expect(result.current).toEqual({ choice: "sunset", current: "sunset" });
   });
 
   it("useCurrentTheme picks up a change made by the inline script", async () => {
     const { useCurrentTheme } = await loadTheme();
     const { result } = renderHook(() => useCurrentTheme());
     await act(async () => {
-      document.documentElement.setAttribute("data-theme", "sakura");
+      document.documentElement.setAttribute("data-theme", "arctic");
       await Promise.resolve();
     });
-    expect(result.current).toBe("sakura");
+    expect(result.current).toBe("arctic");
   });
 });

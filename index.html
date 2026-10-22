@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <script>
       (function () {
-        var themes = ["copper", "night", "sakura"];
+        var themes = ["indigo", "sunset", "arctic"];
         function chosen() {
           var q = new URLSearchParams(location.search).get("theme");
           if (themes.indexOf(q) !== -1) return q;
@@ -17,7 +17,7 @@
         function applyTheme() {
           var forced = chosen();
           var h = new Date().getHours();
-          var t = forced !== null ? forced : h < 8 ? "sakura" : h < 16 ? null : "night";
+          var t = forced !== null ? forced : h < 8 ? "arctic" : h < 16 ? null : "sunset";
           if (t) document.documentElement.setAttribute("data-theme", t);
           else document.documentElement.removeAttribute("data-theme");
         }
@@ -54,7 +54,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#e8843a" />
+    <meta name="theme-color" content="#686bf2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jane Doe - Frontend Engineer</title>
     <meta
@@ -80,7 +80,7 @@
 
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://avatars.githubusercontent.com https://media.licdn.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self' data:;" />
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self' data:;" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

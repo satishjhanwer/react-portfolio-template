@@ -35,10 +35,6 @@ vi.mock("lenis", () => ({
   },
 }));
 
-vi.mock("axe-core", () => ({
-  default: { run: vi.fn(() => Promise.resolve({ violations: [], passes: [1], incomplete: [] })) },
-}));
-
 const burst = vi.hoisted(() => vi.fn());
 vi.mock("./utils/confetti", () => ({ burst }));
 
@@ -143,28 +139,8 @@ describe("App", { timeout: 30_000 }, () => {
     expect(await findDialog(content.commandPalette.dialogLabel)).toBeTruthy();
   });
 
-  it("opens recruiter mode from the palette and records it in the URL", async () => {
+  it("opens the prefs panel from the palette", async () => {
     await renderApp();
-    await runCommand(content.commandLabels.recruiter);
-    const dialog = await findDialog(content.site.name);
-    expect(new URL(location.href).searchParams.get("mode")).toBe("recruiter");
-    fireEvent.keyDown(dialog, { key: "Escape" });
-    await waitFor(() => expect(dialogNamed(content.site.name)).toBeNull());
-    expect(new URL(location.href).searchParams.has("mode")).toBe(false);
-  });
-
-  it("opens recruiter mode straight from ?mode=recruiter", async () => {
-    window.history.replaceState(null, "", "/?mode=recruiter");
-    await renderApp();
-    expect(await findDialog(content.site.name)).toBeTruthy();
-  });
-
-  it("opens the audit and the prefs panel from the palette", async () => {
-    await renderApp();
-    await runCommand(content.commandLabels.audit);
-    const audit = await findDialog(content.a11yAudit.title);
-    fireEvent.click(within(audit).getByRole("button", { name: content.a11yAudit.close }));
-
     await runCommand(content.commandLabels.prefs);
     expect(await findDialog(content.a11yPrefsCopy.title)).toBeTruthy();
   });
@@ -236,69 +212,6 @@ describe("App", { timeout: 30_000 }, () => {
     )!;
     fireEvent.click(link);
     await findDialog(content.shortcutsCopy.title);
-  });
-
-  it("opens the QR code from the palette and from Contact", async () => {
-    await renderApp();
-    await runCommand(content.commandLabels.showQr);
-    const qr = await findDialog(content.contactCardCopy.qrTitle);
-    fireEvent.keyDown(qr, { key: "Escape" });
-    await waitFor(() => expect(dialogNamed(content.contactCardCopy.qrTitle)).toBeNull());
-
-    const button = [...document.querySelectorAll("#contact button")].find(
-      (b) => b.textContent === content.contactCardCopy.showQr,
-    )!;
-    fireEvent.click(button);
-    await findDialog(content.contactCardCopy.qrTitle);
-  });
-
-  it("opens accessibility & privacy from #privacy, without scrolling the page", async () => {
-    window.history.replaceState(null, "", "/#privacy");
-    await renderApp();
-    await findDialog(content.trustCopy.title);
-    expect(scrollWhenReady).not.toHaveBeenCalled();
-  });
-
-  it("opens the statement from the prefs panel (closing the panel) and the footer", async () => {
-    await renderApp();
-    fireEvent.click(document.querySelector("[data-a11y-prefs-trigger]")!);
-    const prefs = await findDialog(content.a11yPrefsCopy.title);
-    fireEvent.click(within(prefs).getByRole("button", { name: content.trustCopy.prefsLink }));
-    const trust = await findDialog(content.trustCopy.title);
-    await waitFor(() => expect(dialogNamed(content.a11yPrefsCopy.title)).toBeNull());
-    fireEvent.keyDown(trust, { key: "Escape" });
-    await waitFor(() => expect(dialogNamed(content.trustCopy.title)).toBeNull());
-
-    const link = [...document.querySelectorAll("footer button")].find(
-      (b) => b.textContent === content.trustCopy.footerLink,
-    )!;
-    fireEvent.click(link);
-    await findDialog(content.trustCopy.title);
-  });
-
-  it("opens accessibility & privacy from the palette", async () => {
-    await renderApp();
-    await runCommand(content.commandLabels.trust);
-    await findDialog(content.trustCopy.title);
-  });
-
-  it("opens the colophon from the palette and the footer", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn(() => Promise.reject(new Error("offline"))),
-    );
-    await renderApp();
-    await runCommand(content.commandLabels.colophon);
-    const dialog = await findDialog(content.colophonCopy.title);
-    await waitFor(() => expect(dialog.textContent).toContain(content.colophonCopy.error));
-    fireEvent.keyDown(dialog, { key: "Escape" });
-    await waitFor(() => expect(dialogNamed(content.colophonCopy.title)).toBeNull());
-
-    const link = [...document.querySelectorAll("footer button")].find(
-      (b) => b.textContent === content.colophonCopy.footerLink,
-    )!;
-    fireEvent.click(link);
-    await findDialog(content.colophonCopy.title);
   });
 
   it("ignores ? while typing", async () => {

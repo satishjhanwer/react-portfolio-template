@@ -200,7 +200,7 @@ describe("offline caching of loaded assets", () => {
         "http://localhost/assets/index-abc.js",
         "http://localhost/assets/index-abc.js",
         "http://localhost/logo.svg",
-        "https://static.cloudflareinsights.com/assets/x.js",
+        "https://cdn.example.com/assets/x.js",
       ),
     );
     resourceCallback!(entries("http://localhost/assets/About-1.css"));

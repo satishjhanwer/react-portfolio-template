@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { m, AnimatePresence, useReducedMotionConfig, useScroll, useTransform } from "framer-motion";
 import styles from "./Hero.module.css";
-import {
-  availability,
-  availabilityLinkSuffix,
-  availabilitySince,
-  hero,
-  recruiterEntry,
-  resumeUrl,
-} from "../../i18n/content";
+import { availability, availabilityLinkSuffix, availabilitySince, hero, resumeUrl } from "../../i18n/content";
 import { RichText } from "../RichText";
 import { useScramble } from "../../hooks/useScramble";
 import { scrollToSection } from "../../utils/dom";
@@ -21,11 +14,9 @@ const up = (delay: number) => ({
 
 interface HeroProps {
   scrambleActive: boolean;
-  onOpenRecruiter: () => void;
-  onPreloadRecruiter: () => void;
 }
 
-export function Hero({ scrambleActive, onOpenRecruiter, onPreloadRecruiter }: HeroProps) {
+export function Hero({ scrambleActive }: HeroProps) {
   const [statusIdx, setStatusIdx] = useState(0);
   const reduceMotion = useReducedMotionConfig();
   const statuses = availability.statuses;
@@ -114,18 +105,6 @@ export function Hero({ scrambleActive, onOpenRecruiter, onPreloadRecruiter }: He
                 {hero.ctaGhost.label}
               </a>
             )}
-          </m.div>
-
-          <m.div {...up(0.5)}>
-            <button
-              type="button"
-              className={styles.quickLink}
-              onClick={onOpenRecruiter}
-              onPointerEnter={onPreloadRecruiter}
-              onFocus={onPreloadRecruiter}
-              aria-haspopup="dialog">
-              <span aria-hidden="true">⚡</span> {recruiterEntry.heroTrigger}
-            </button>
           </m.div>
         </div>
 

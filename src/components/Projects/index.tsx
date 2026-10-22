@@ -1,6 +1,6 @@
 import { m } from "framer-motion";
 import styles from "./Projects.module.css";
-import { a11yAudit, projects, viewProjectLabel, externalLinkGlyph } from "../../i18n/content";
+import { projects, viewProjectLabel, externalLinkGlyph } from "../../i18n/content";
 import type { Tag } from "../../types";
 import { SectionHeader } from "../SectionHeader";
 import { TiltCard } from "./TiltCard";
@@ -8,11 +8,7 @@ import { useSectionInView } from "../../hooks/useSectionInView";
 
 const tagCls = (s: "P" | "C" | "G") => (s === "P" ? styles.tagP : s === "C" ? styles.tagC : styles.tagG);
 
-interface ProjectsProps {
-  onRunAudit?: () => void;
-}
-
-export function Projects({ onRunAudit }: ProjectsProps) {
+export function Projects() {
   const { ref, inView } = useSectionInView();
 
   return (
@@ -46,11 +42,6 @@ export function Projects({ onRunAudit }: ProjectsProps) {
                   </span>
                 ))}
               </div>
-              {p.liveAudit && onRunAudit && (
-                <button type="button" className={styles.auditBtn} onClick={onRunAudit} aria-haspopup="dialog">
-                  {a11yAudit.trigger} <span aria-hidden="true">→</span>
-                </button>
-              )}
               {p.url && (
                 <a
                   href={p.url}
@@ -65,8 +56,6 @@ export function Projects({ onRunAudit }: ProjectsProps) {
           </TiltCard>
         ))}
       </div>
-
-      {onRunAudit && <div data-a11y-demo-slot="" className={styles.demoSlot} />}
     </section>
   );
 }

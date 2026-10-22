@@ -4,17 +4,9 @@ export type Locale = (typeof locales)[number];
 
 export type TextSize = "100" | "115" | "130";
 export type ColorVision = "none" | "protanopia" | "deuteranopia" | "tritanopia" | "achromatopsia";
-type VitalName = "LCP" | "CLS" | "INP" | "FCP" | "TTFB";
 
 export type Accent = "P" | "C" | "G";
 export type CommandGroupId = "navigate" | "actions" | "projects" | "social";
-export type AxeImpact = "critical" | "serious" | "moderate" | "minor";
-
-interface Range {
-  id: string;
-  from: number;
-  to: number;
-}
 
 export interface SiteConfig {
   site: {
@@ -23,10 +15,8 @@ export interface SiteConfig {
     initials: string;
     logoCursor: string;
     defaultLogo: string;
-    timeZone: string;
   };
   careerStart: { year: number; month: number };
-  analytics: { cloudflareToken: string; hosts: string[] };
   languageNames: Record<Locale, string>;
   navLinks: { id: string }[];
   availability: { open: boolean; since?: string; target: string };
@@ -39,7 +29,6 @@ export interface SiteConfig {
     ctaGhost: { target: string };
     floatChips: { id: string; style: Accent }[];
   };
-  recruiterEntry: { queryParam: { key: string; value: string } };
   stats: { id: string; value?: string }[];
   impact: { id: string; value: number; suffix?: string }[];
   skillCategories: {
@@ -56,7 +45,6 @@ export interface SiteConfig {
     featured?: boolean;
     glowC?: boolean;
     url?: string;
-    liveAudit?: boolean;
   }[];
   repos: {
     name: string;
@@ -78,34 +66,17 @@ export interface SiteConfig {
   awards: { id: string; year: string; org: string; logo?: string }[];
   email: string;
   ctaArrow: string;
-  greetingSalutations: Range[];
-  greetingReplies: Range[];
   socials: { label: string; href: string; icon: string }[];
   commandGroupOrder: CommandGroupId[];
   commandGlyphs: Record<string, string>;
   secretMinQuery: number;
   shortcuts: { id: string; keys: string[] }[];
-  workingHours: { start: number; end: number };
-  visitorHours: { start: number; end: number };
-  overlapZones: string[];
-  trustReviewed: string;
   konamiSequence: string[];
   easterEgg: { theme: string; toastMs: number };
-  recruiter: {
-    careerCount: number;
-    links: {
-      id: string;
-      kind: "resume" | "email" | "social";
-      social?: string;
-      primary?: boolean;
-    }[];
-  };
   a11yPrefs: {
     textSizeOptions: { value: TextSize; label: string }[];
     visionOptions: ColorVision[];
   };
-  a11yAuditImpactOrder: AxeImpact[];
-  webVitals: { summary: VitalName[]; order: VitalName[] };
   printSiteUrl: string;
 }
 
@@ -124,17 +95,4 @@ export interface ImpactMetric {
   suffix?: string;
   label: string;
   context: string;
-}
-
-export interface RecruiterLink {
-  label: string;
-  kind: "resume" | "email" | "social";
-  social?: string;
-  primary?: boolean;
-}
-
-export interface RuleExplanation {
-  title: string;
-  why: string;
-  fix: string;
 }

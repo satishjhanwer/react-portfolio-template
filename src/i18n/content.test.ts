@@ -71,9 +71,6 @@ describe.each(locales)("content in %s", (lang) => {
     expect(content.email).toBe(siteConfig.email);
     expect(content.socials).toEqual(siteConfig.socials);
     expect(content.projects.map((p) => p.title)).toEqual(siteConfig.projects.map((p) => p.title));
-    expect(content.recruiter.links.map(({ kind, social }) => ({ kind, social }))).toEqual(
-      siteConfig.recruiter.links.map(({ kind, social }) => ({ kind, social })),
-    );
   });
 });
 

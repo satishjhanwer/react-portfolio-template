@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -9,7 +9,6 @@ import {
   buildReplacements,
   cleanDomain,
   initialsOf,
-  isTimeZone,
   personalize,
 } from "./setup-lib.ts";
 
@@ -18,7 +17,6 @@ const answers: Answers = {
   jobTitle: "Staff Engineer",
   domain: "ada.dev",
   email: "ada@ada.dev",
-  timeZone: "Europe/Paris",
   github: "ada",
   linkedin: "ada-l",
   x: "",
@@ -27,10 +25,8 @@ const answers: Answers = {
 const run = (text: string, a = answers) => applyReplacements(text, buildReplacements(a));
 
 describe("setup", () => {
-  it("cleans domains, checks time zones and derives initials", () => {
+  it("cleans domains and derives initials", () => {
     expect(cleanDomain(" https://ada.dev/ ")).toBe("ada.dev");
-    expect(isTimeZone("Asia/Tokyo")).toBe(true);
-    expect(isTimeZone("Mars/Olympus")).toBe(false);
     expect(initialsOf("Ada King Lovelace")).toBe("AL");
     expect(initialsOf("Cher")).toBe("CH");
   });
@@ -41,9 +37,7 @@ describe("setup", () => {
       'nameFirst: "ADA", nameLast: "LOVELACE", initials: "AL"',
     );
     expect(run("mailto:hello@your-domain.com https://your-domain.com/")).toBe("mailto:ada@ada.dev https://ada.dev/");
-    expect(run("https://github.com/your-username/your-username.github.io.git")).toBe(
-      "https://github.com/ada/ada.github.io.git",
-    );
+    expect(run("https://github.com/your-username")).toBe("https://github.com/ada");
     expect(run("linkedin.com/in/your-username/")).toBe("linkedin.com/in/ada-l/");
   });
 
@@ -51,16 +45,13 @@ describe("setup", () => {
     expect(run("https://x.com/your-username")).toBe("https://x.com/your-username");
   });
 
-  it("rewrites files on disk, the config's time zone only, and fills in the licence", () => {
+  it("rewrites files on disk and fills in the licence", () => {
     const root = mkdtempSync(join(tmpdir(), "setup-"));
-    mkdirSync(join(root, "src"));
-    writeFileSync(join(root, "src/site.config.ts"), 'name: "Jane Doe", timeZone: "Europe/London"');
-    writeFileSync(join(root, "a.test.ts"), 'timeZone: "Europe/London"');
+    writeFileSync(join(root, "a.ts"), 'name: "Jane Doe"');
+    writeFileSync(join(root, "b.ts"), "untouched");
     writeFileSync(join(root, "LICENSE"), "Copyright (c) [YEAR] [YOUR NAME]");
-    expect(personalize(root, answers, ["src/site.config.ts", "a.test.ts"])).toEqual(["src/site.config.ts", "LICENSE"]);
-    expect(readFileSync(join(root, "src/site.config.ts"), "utf-8")).toBe(
-      'name: "Ada Lovelace", timeZone: "Europe/Paris"',
-    );
+    expect(personalize(root, answers, ["a.ts", "b.ts"])).toEqual(["a.ts", "LICENSE"]);
+    expect(readFileSync(join(root, "a.ts"), "utf-8")).toBe('name: "Ada Lovelace"');
     expect(readFileSync(join(root, "LICENSE"), "utf-8")).toBe(`Copyright (c) ${new Date().getFullYear()} Ada Lovelace`);
   });
 });

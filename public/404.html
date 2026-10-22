@@ -11,7 +11,7 @@
     <script>
       (function () {
         var r = document.documentElement;
-        var themes = ["copper", "night", "sakura"];
+        var themes = ["indigo", "sunset", "arctic"];
         var saved = null;
         try {
           saved = localStorage.getItem("theme");
@@ -21,37 +21,37 @@
           if (p.underlineLinks === true) r.setAttribute("data-links", "underline");
         } catch (e) {}
         var h = new Date().getHours();
-        var t = themes.indexOf(saved) !== -1 ? saved : h < 8 ? "sakura" : h < 16 ? "copper" : "night";
+        var t = themes.indexOf(saved) !== -1 ? saved : h < 8 ? "arctic" : h < 16 ? "indigo" : "sunset";
         r.setAttribute("data-theme", t);
       })();
     </script>
     <style>
       :root {
         color-scheme: dark;
+        --bg: #080818;
+        --text-page: #f0f0ff;
+        --text-body: #a0a0c8;
+        --text-muted: #8080b0;
+        --accent: #686bf2;
+        --cyan: #34d399;
+      }
+
+      :root[data-theme="sunset"] {
         --bg: #0c0500;
         --text-page: #f5ede0;
         --text-body: #c8b09c;
         --text-muted: #c8a882;
-        --accent: #e8843a;
+        --accent: #f59e0b;
+        --cyan: #fb7185;
+      }
+
+      :root[data-theme="arctic"] {
+        --bg: #020c0c;
+        --text-page: #f0f8f8;
+        --text-body: #a0c8c0;
+        --text-muted: #82b8b0;
+        --accent: #14b8a6;
         --cyan: #38bdf8;
-      }
-
-      :root[data-theme="night"] {
-        --bg: #06060f;
-        --text-page: #f0f0ff;
-        --text-body: #a0a0c8;
-        --text-muted: #8080b0;
-        --accent: #a855f7;
-        --cyan: #22d3ee;
-      }
-
-      :root[data-theme="sakura"] {
-        --bg: #0d0206;
-        --text-page: #fdf0f8;
-        --text-body: #d8b8cc;
-        --text-muted: #d0a8bc;
-        --accent: #ff8fab;
-        --cyan: #f9e4b7;
       }
 
       :root[data-contrast="high"] {

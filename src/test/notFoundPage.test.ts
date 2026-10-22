@@ -73,13 +73,13 @@ describe("404 page", () => {
   });
 
   it("follows the saved theme, else the time of day", () => {
-    localStorage.setItem("theme", "sakura");
+    localStorage.setItem("theme", "arctic");
     load();
-    expect(document.documentElement.getAttribute("data-theme")).toBe("sakura");
+    expect(document.documentElement.getAttribute("data-theme")).toBe("arctic");
     localStorage.removeItem("theme");
     vi.setSystemTime(new Date(2026, 9, 22, 20, 0));
     load();
-    expect(document.documentElement.getAttribute("data-theme")).toBe("night");
+    expect(document.documentElement.getAttribute("data-theme")).toBe("sunset");
   });
 
   it("applies text size, high contrast and underlined links", () => {

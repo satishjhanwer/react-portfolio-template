@@ -30,12 +30,12 @@ describe("inline theme script", () => {
   });
 
   it.each([
-    [0, "sakura"],
-    [7, "sakura"],
+    [0, "arctic"],
+    [7, "arctic"],
     [8, null],
     [15, null],
-    [16, "night"],
-    [23, "night"],
+    [16, "sunset"],
+    [23, "sunset"],
   ])("at %i:00 the theme is %s", (hour, expected) => {
     vi.setSystemTime(new Date(2026, 9, 21, hour, 30));
     run(themeScript);
@@ -44,9 +44,9 @@ describe("inline theme script", () => {
 
   it("lets ?theme= override the time", () => {
     vi.setSystemTime(new Date(2026, 9, 21, 10, 0));
-    window.history.replaceState(null, "", "/?theme=sakura");
+    window.history.replaceState(null, "", "/?theme=arctic");
     run(themeScript);
-    expect(theme()).toBe("sakura");
+    expect(theme()).toBe("arctic");
   });
 
   it("switches at the next boundary without a reload", () => {
@@ -54,46 +54,46 @@ describe("inline theme script", () => {
     run(themeScript);
     expect(theme()).toBeNull();
     vi.advanceTimersByTime(61_000);
-    expect(theme()).toBe("night");
+    expect(theme()).toBe("sunset");
   });
 
-  it("wraps past midnight into sakura", () => {
+  it("wraps past midnight into arctic", () => {
     vi.setSystemTime(new Date(2026, 9, 21, 23, 59, 30));
     run(themeScript);
-    expect(theme()).toBe("night");
+    expect(theme()).toBe("sunset");
     vi.advanceTimersByTime(31_000);
-    expect(theme()).toBe("sakura");
+    expect(theme()).toBe("arctic");
   });
 
   it("ignores an unknown ?theme=", () => {
     vi.setSystemTime(new Date(2026, 9, 21, 20, 0));
     window.history.replaceState(null, "", "/?theme=neon");
     run(themeScript);
-    expect(theme()).toBe("night");
+    expect(theme()).toBe("sunset");
   });
 
   it("lets ?theme= win over the saved choice", () => {
-    localStorage.setItem("theme", "night");
-    window.history.replaceState(null, "", "/?theme=sakura");
+    localStorage.setItem("theme", "sunset");
+    window.history.replaceState(null, "", "/?theme=arctic");
     run(themeScript);
-    expect(theme()).toBe("sakura");
+    expect(theme()).toBe("arctic");
   });
 
   it("keeps a saved theme across a time boundary", () => {
-    localStorage.setItem("theme", "sakura");
+    localStorage.setItem("theme", "arctic");
     vi.setSystemTime(new Date(2026, 9, 21, 15, 59, 0));
     run(themeScript);
-    expect(theme()).toBe("sakura");
+    expect(theme()).toBe("arctic");
     vi.advanceTimersByTime(61_000);
-    expect(theme()).toBe("sakura");
+    expect(theme()).toBe("arctic");
   });
 
   it("picks up a choice made in the app at the next boundary", () => {
     vi.setSystemTime(new Date(2026, 9, 21, 15, 59, 0));
     run(themeScript);
-    localStorage.setItem("theme", "copper");
+    localStorage.setItem("theme", "indigo");
     vi.advanceTimersByTime(61_000);
-    expect(theme()).toBe("copper");
+    expect(theme()).toBe("indigo");
   });
 
   it("survives blocked storage", () => {
@@ -102,7 +102,7 @@ describe("inline theme script", () => {
     });
     vi.setSystemTime(new Date(2026, 9, 21, 3, 0));
     run(themeScript);
-    expect(theme()).toBe("sakura");
+    expect(theme()).toBe("arctic");
   });
 });
 
@@ -111,9 +111,9 @@ describe("inline theme script matches applyTheme()", () => {
     ["auto at 03:00", null, 3],
     ["auto at 12:00", null, 12],
     ["auto at 20:00", null, 20],
-    ["saved copper at 20:00", "copper", 20],
-    ["saved night at 03:00", "night", 3],
-    ["saved sakura at 12:00", "sakura", 12],
+    ["saved indigo at 20:00", "indigo", 20],
+    ["saved sunset at 03:00", "sunset", 3],
+    ["saved arctic at 12:00", "arctic", 12],
     ["invalid saved value", "neon", 20],
   ])("%s", async (_, saved, hour) => {
     vi.useFakeTimers();

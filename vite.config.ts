@@ -5,7 +5,6 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { yearsExperience } from "./src/utils/experience.ts";
 import { renderOgImageCached } from "./scripts/og-image.ts";
-import { buildInfo } from "./scripts/build-info.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -91,30 +90,6 @@ export default defineConfig({
         });
       },
     },
-    {
-      name: "build-info",
-      configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          if (req.url !== "/build-info.json") {
-            return next();
-          }
-          res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify(buildInfo(__dirname, null)));
-        });
-      },
-      generateBundle(_, bundle) {
-        const chunks = Object.values(bundle).flatMap((item) =>
-          item.type === "chunk"
-            ? [{ fileName: item.fileName, code: item.code, isEntry: item.isEntry, imports: item.imports }]
-            : [],
-        );
-        this.emitFile({
-          type: "asset",
-          fileName: "build-info.json",
-          source: JSON.stringify(buildInfo(__dirname, chunks), null, 2),
-        });
-      },
-    },
   ],
   build: {
     rollupOptions: {
@@ -130,6 +105,5 @@ export default defineConfig({
       },
     },
     assetsInlineLimit: 4096,
-    chunkSizeWarningLimit: 700,
   },
 });

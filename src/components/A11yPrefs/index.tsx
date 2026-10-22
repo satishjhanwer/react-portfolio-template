@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { m } from "framer-motion";
 import styles from "./A11yPrefs.module.css";
-import { a11yPrefsCopy as copy, trustCopy } from "../../i18n/content";
+import { a11yPrefsCopy as copy } from "../../i18n/content";
 import { useA11yPrefs, isDefaultPrefs, resetPrefs, setPrefs } from "../../utils/a11yPrefs";
 import type { A11yPrefs as Prefs } from "../../utils/a11yPrefs";
 import { THEMES, setThemeChoice, useCurrentTheme, useThemeChoice } from "../../utils/theme";
@@ -15,10 +15,9 @@ const TOGGLES = Object.keys(copy.toggles) as ToggleKey[];
 
 interface A11yPrefsProps {
   onClose: () => void;
-  onOpenStatement?: () => void;
 }
 
-export function A11yPrefs({ onClose, onOpenStatement }: A11yPrefsProps) {
+export function A11yPrefs({ onClose }: A11yPrefsProps) {
   const id = useId();
   const prefs = useA11yPrefs();
   const themeChoice = useThemeChoice();
@@ -171,11 +170,6 @@ export function A11yPrefs({ onClose, onOpenStatement }: A11yPrefsProps) {
       <button type="button" className={styles.reset} onClick={resetPrefs} disabled={isDefaultPrefs(prefs)}>
         {copy.reset}
       </button>
-      {onOpenStatement && (
-        <button type="button" className={styles.statement} onClick={onOpenStatement}>
-          {trustCopy.prefsLink}
-        </button>
-      )}
     </m.div>,
     document.body,
   );

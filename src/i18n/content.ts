@@ -1,5 +1,5 @@
 import { siteConfig as cfg } from "../site.config";
-import type { CommandGroupId, ImpactMetric, RecruiterLink, RuleExplanation } from "../types";
+import type { CommandGroupId, ImpactMetric } from "../types";
 import { yearsExperience } from "../utils/experience";
 import { locale } from "./locale";
 import en from "./locales/en";
@@ -35,7 +35,6 @@ function text<T>(record: Record<string, T>, id: string): T {
 
 export const site = { ...cfg.site, ...m.site };
 export const careerStart = cfg.careerStart;
-export const analytics = cfg.analytics;
 export const languageNames = cfg.languageNames;
 export const languageCopy = m.languageCopy;
 export const loader = m.loader;
@@ -70,7 +69,6 @@ export const hero = {
     style,
   })),
 };
-export const recruiterEntry = { ...cfg.recruiterEntry, ...m.recruiterEntry };
 
 export const stats = cfg.stats.map(({ id, value }) => ({
   value: value ?? yearsExperience,
@@ -127,31 +125,9 @@ export const heading = m.heading;
 export const note = m.note;
 export const openTo = m.openTo;
 
-export const greetingSalutations = cfg.greetingSalutations.map(({ id, ...range }) => ({
-  ...range,
-  text: text(m.greetingSalutations, id),
-}));
-export const greetingReplies = cfg.greetingReplies.map(({ id, ...range }) => ({
-  ...range,
-  text: text(m.greetingReplies, id),
-}));
-export const greetingFallback = m.greetingFallback;
-export const greetingSameZone = m.greetingSameZone;
-export const greetingMyTime = m.greetingMyTime;
-export const greetingReplyFallback = m.greetingReplyFallback;
-export const greetingJoin = m.greetingJoin;
-export const greetingWithReply = m.greetingWithReply;
-
 export const socials = cfg.socials;
 
-export const recruiter = {
-  ...m.recruiter,
-  careerCount: cfg.recruiter.careerCount,
-  links: cfg.recruiter.links.map(({ id, ...link }): RecruiterLink => ({
-    ...link,
-    label: text(m.recruiter.links, id),
-  })),
-};
+export const profile = m.profile;
 
 export const commandGroups: Record<CommandGroupId, string> = m.commandGroups;
 export const commandGroupOrder = cfg.commandGroupOrder;
@@ -182,26 +158,6 @@ export const a11yPrefsCopy = {
   },
 };
 
-export const a11yAudit = {
-  ...m.a11yAudit,
-  impactOrder: cfg.a11yAuditImpactOrder,
-};
-export const ruleExplanations: Record<string, RuleExplanation> = m.ruleExplanations;
-
-export const webVitals = {
-  ...m.webVitals,
-  summary: cfg.webVitals.summary,
-  order: cfg.webVitals.order,
-};
-
-export const overlapCopy = m.overlapCopy;
-export const workingHours = cfg.workingHours;
-export const visitorHours = cfg.visitorHours;
-export const overlapZones = cfg.overlapZones;
-export const contactCardCopy = m.contactCardCopy;
-export const trustCopy = m.trustCopy;
-export const trustReviewed = cfg.trustReviewed;
-export const colophonCopy = m.colophonCopy;
 export const shortcutsCopy = m.shortcutsCopy;
 export const shortcuts = cfg.shortcuts.map(({ id, keys }) => ({ id, keys, label: text(m.shortcutsCopy.items, id) }));
 export const pwaCopy = m.pwaCopy;

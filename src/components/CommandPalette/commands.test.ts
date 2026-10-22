@@ -48,19 +48,10 @@ describe("availableCommands", () => {
       availableCommands()
         .filter((c) => c.action.type === "theme")
         .map((c) => c.id);
-    expect(themes()).toEqual(["theme-copper", "theme-night", "theme-sakura"]);
+    expect(themes()).toEqual(["theme-indigo", "theme-sunset", "theme-arctic"]);
     const { setThemeChoice } = await import("../../utils/theme");
-    setThemeChoice("night");
-    expect(themes()).toEqual(["theme-auto", "theme-copper", "theme-sakura"]);
-  });
-
-  it("downloads the contact card", async () => {
-    const { availableCommands } = await loadCommands();
-    expect(availableCommands().find((c) => c.id === "action-save-contact")?.action).toEqual({
-      type: "href",
-      href: "/contact.vcf",
-      download: true,
-    });
+    setThemeChoice("sunset");
+    expect(themes()).toEqual(["theme-auto", "theme-indigo", "theme-arctic"]);
   });
 
   it("marks only the retro easter egg as secret", async () => {

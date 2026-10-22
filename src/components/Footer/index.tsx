@@ -1,8 +1,7 @@
 import styles from "./Footer.module.css";
-import { colophonCopy, languageCopy, shortcutsCopy, socials, site, trustCopy } from "../../i18n/content";
+import { languageCopy, shortcutsCopy, socials, site } from "../../i18n/content";
 import type { AppCommand } from "../CommandPalette/commands";
 import { locale, switchLocale } from "../../i18n/locale";
-import { VitalsBadge } from "./VitalsBadge";
 import { InstallButton } from "./InstallButton";
 
 interface FooterProps {
@@ -10,9 +9,7 @@ interface FooterProps {
 }
 
 const LINKS: { command: AppCommand; label: string }[] = [
-  { command: "open-trust", label: trustCopy.footerLink },
   { command: "open-shortcuts", label: shortcutsCopy.footerLink },
-  { command: "open-colophon", label: colophonCopy.footerLink },
 ];
 
 export function Footer({ onCommand }: FooterProps) {
@@ -61,7 +58,6 @@ export function Footer({ onCommand }: FooterProps) {
         )}
         <div className={styles.metaRow}>
           <InstallButton />
-          <VitalsBadge />
         </div>
       </div>
     </footer>

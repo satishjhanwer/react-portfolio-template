@@ -374,34 +374,6 @@
   flex-wrap: wrap;
 }
 
-.quickLink {
-  margin-top: 16px;
-  padding: 4px 0;
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  background: none;
-  border: none;
-  border-bottom: 1px dashed var(--purple-a40);
-  cursor: pointer;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
-}
-
-.quickLink:hover {
-  color: var(--cyan);
-  border-bottom-color: var(--cyan-a40);
-}
-
-.quickLink:focus-visible {
-  outline: 2px solid var(--cyan);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
 .btnPrimary {
   padding: 14px 30px;
   border-radius: var(--radius-sm);

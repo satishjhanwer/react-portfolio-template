@@ -337,26 +337,6 @@
   color: var(--cyan);
 }
 
-.drawerQuick {
-  margin-top: 28px;
-  padding: 12px 16px;
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: left;
-  color: var(--cyan);
-  background: var(--cyan-a06);
-  border: 1px solid var(--cyan-a25);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-}
-
-.drawerQuick:focus-visible {
-  outline: 2px solid var(--cyan);
-  outline-offset: 3px;
-}
-
 .nav[data-compact] .links {
   position: absolute;
   visibility: hidden;

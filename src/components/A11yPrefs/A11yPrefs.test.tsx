@@ -37,12 +37,12 @@ describe("A11yPrefs", () => {
     renderPanel();
     const auto = screen.getByRole("radio", { name: copy.theme.auto });
     expect(auto).toHaveProperty("checked", true);
-    expect(screen.getByText(copy.theme.autoHint(copy.theme.names.copper))).toBeTruthy();
+    expect(screen.getByText(copy.theme.autoHint(copy.theme.names.indigo))).toBeTruthy();
 
-    fireEvent.click(screen.getByRole("radio", { name: copy.theme.names.sakura }));
-    expect(getThemeChoice()).toBe("sakura");
-    expect(document.documentElement.getAttribute("data-theme")).toBe("sakura");
-    expect(screen.getByText(copy.theme.autoHint(copy.theme.names.sakura))).toBeTruthy();
+    fireEvent.click(screen.getByRole("radio", { name: copy.theme.names.arctic }));
+    expect(getThemeChoice()).toBe("arctic");
+    expect(document.documentElement.getAttribute("data-theme")).toBe("arctic");
+    expect(screen.getByText(copy.theme.autoHint(copy.theme.names.arctic))).toBeTruthy();
 
     fireEvent.click(auto);
     expect(getThemeChoice()).toBe("auto");

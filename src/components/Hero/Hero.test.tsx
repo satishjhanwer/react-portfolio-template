@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { availability, hero, recruiterEntry } from "../../i18n/content";
+import { availability, hero } from "../../i18n/content";
 import { Hero } from ".";
 
 const scrollToSection = vi.hoisted(() => vi.fn());
@@ -11,15 +11,13 @@ vi.mock("../../utils/dom", async (importOriginal) => ({
 }));
 
 function renderHero({ reduced = false, scramble = false } = {}) {
-  const props = { onOpenRecruiter: vi.fn(), onPreloadRecruiter: vi.fn() };
   render(
     <LazyMotion features={domAnimation} strict>
       <MotionConfig reducedMotion={reduced ? "always" : "never"}>
-        <Hero scrambleActive={scramble} {...props} />
+        <Hero scrambleActive={scramble} />
       </MotionConfig>
     </LazyMotion>,
   );
-  return props;
 }
 
 const statusButton = () => screen.getByRole("button", { name: new RegExp(availability.statuses[0].slice(0, 6)) });
@@ -78,15 +76,5 @@ describe("Hero", () => {
   it("offers the resume download", () => {
     renderHero();
     expect(screen.getByRole("link", { name: hero.ctaGhost.label }).hasAttribute("download")).toBe(true);
-  });
-
-  it("opens and preloads recruiter mode", () => {
-    const props = renderHero();
-    const quick = screen.getByRole("button", { name: new RegExp(recruiterEntry.heroTrigger) });
-    fireEvent.pointerEnter(quick);
-    fireEvent.focus(quick);
-    fireEvent.click(quick);
-    expect(props.onPreloadRecruiter).toHaveBeenCalledTimes(2);
-    expect(props.onOpenRecruiter).toHaveBeenCalledOnce();
   });
 });

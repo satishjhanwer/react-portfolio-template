@@ -14,10 +14,10 @@ const out = (file: string) => resolve(root, "public", file);
 const { initials, logoCursor } = siteConfig.site;
 
 const brand = {
-  from: "#a855f7",
-  to: "#22d3ee",
-  tile: "#0f0f1a",
-  bg: "#06060f",
+  from: "#686bf2",
+  to: "#34d399",
+  tile: "#10102a",
+  bg: "#080818",
 };
 
 const inter = (weight: 800 | 900) =>

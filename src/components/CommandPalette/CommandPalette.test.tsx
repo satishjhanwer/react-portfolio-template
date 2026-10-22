@@ -185,11 +185,11 @@ describe("CommandPalette", () => {
 
   it("runs app commands after closing", async () => {
     renderPalette();
-    type(commandLabels.audit);
+    type(commandLabels.prefs);
     key("Enter");
     expect(onAppCommand).not.toHaveBeenCalled();
     await afterClose();
-    expect(onAppCommand).toHaveBeenCalledWith("open-audit");
+    expect(onAppCommand).toHaveBeenCalledWith("open-prefs");
   });
 
   it("follows links, external ones in a new tab", () => {
@@ -252,8 +252,8 @@ describe("CommandPalette", () => {
 
   it("switches theme and closes", async () => {
     renderPalette();
-    fireEvent.click(options().find((o) => o.id.endsWith("theme-night"))!);
-    expect(document.documentElement.getAttribute("data-theme")).toBe("night");
+    fireEvent.click(options().find((o) => o.id.endsWith("theme-sunset"))!);
+    expect(document.documentElement.getAttribute("data-theme")).toBe("sunset");
     expect(onClose).toHaveBeenCalledOnce();
     const { setThemeChoice } = await import("../../utils/theme");
     setThemeChoice("auto");

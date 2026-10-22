@@ -8,7 +8,6 @@ import {
   commandPalette,
   navLinks,
   navMenuLabel,
-  recruiterEntry,
 } from "../../i18n/content";
 import { resizeAll } from "../../test/helpers";
 import { Nav } from ".";
@@ -23,7 +22,6 @@ function renderNav(prefsOpen = false) {
   const props = {
     onOpenPalette: vi.fn(),
     onPreloadPalette: vi.fn(),
-    onOpenRecruiter: vi.fn(),
     prefsOpen,
     onTogglePrefs: vi.fn(),
     onPreloadPrefs: vi.fn(),
@@ -115,18 +113,14 @@ describe("Nav", () => {
     expect(hamburger().getAttribute("aria-expanded")).toBe("false");
   });
 
-  it("opens recruiter mode and the status link from the drawer", () => {
-    const props = renderNav();
+  it("opens the status link from the drawer", () => {
+    renderNav();
     fireEvent.click(hamburger());
     fireEvent.click(screen.getByRole("button", { name: new RegExp(availabilityFull) }));
     act(() => {
       vi.advanceTimersByTime(50);
     });
     expect(scrollToSection).toHaveBeenCalledWith(availability.target);
-
-    fireEvent.click(hamburger());
-    fireEvent.click(screen.getByRole("button", { name: new RegExp(recruiterEntry.drawerTrigger) }));
-    expect(props.onOpenRecruiter).toHaveBeenCalledOnce();
   });
 
   it("switches to the compact menu when the links don't fit", () => {

@@ -2,10 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import fontsHref from "./fonts.css?url";
 import { App } from "./App";
-import { startWebVitals } from "./utils/webVitals";
 import { initPrefs } from "./utils/a11yPrefs";
 import { initPwa } from "./utils/pwa";
-import { logConsoleHint, startAnalytics } from "./utils/startup";
+import { logConsoleHint } from "./utils/startup";
 import { site } from "./i18n/content";
 import { locale } from "./i18n/locale";
 
@@ -36,6 +35,4 @@ initPrefs();
 preloadFonts();
 renderApp();
 initPwa();
-startWebVitals();
 logConsoleHint();
-startAnalytics();

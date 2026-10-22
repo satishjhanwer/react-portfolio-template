@@ -8,7 +8,6 @@ import {
   commandPalette,
   navLinks,
   navMenuLabel,
-  recruiterEntry,
   site,
   availabilityFull,
 } from "../../i18n/content";
@@ -21,20 +20,12 @@ const MIN_LINKS_GAP = 24;
 interface NavProps {
   onOpenPalette: () => void;
   onPreloadPalette: () => void;
-  onOpenRecruiter: () => void;
   prefsOpen: boolean;
   onTogglePrefs: () => void;
   onPreloadPrefs: () => void;
 }
 
-export function Nav({
-  onOpenPalette,
-  onPreloadPalette,
-  onOpenRecruiter,
-  prefsOpen,
-  onTogglePrefs,
-  onPreloadPrefs,
-}: NavProps) {
+export function Nav({ onOpenPalette, onPreloadPalette, prefsOpen, onTogglePrefs, onPreloadPrefs }: NavProps) {
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -203,16 +194,6 @@ export function Nav({
                   </m.li>
                 ))}
               </ul>
-              <button
-                type="button"
-                className={styles.drawerQuick}
-                onClick={() => {
-                  setOpen(false);
-                  onOpenRecruiter();
-                }}
-                aria-haspopup="dialog">
-                <span aria-hidden="true">⚡</span> {recruiterEntry.drawerTrigger}
-              </button>
             </m.div>
           </>
         )}

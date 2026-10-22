@@ -8,7 +8,7 @@ import { siteConfig } from "../src/site.config.ts";
 import en from "../src/i18n/locales/en.ts";
 
 const site = { name: siteConfig.site.name, tagline: en.site.tagline };
-const recruiter = { headline: en.recruiter.headline, meta: en.recruiter.meta };
+const profile = { headline: en.profile.headline, meta: en.profile.meta };
 const impact = siteConfig.impact.map((metric) => ({
   ...metric,
   ...en.impact[metric.id as keyof typeof en.impact],
@@ -26,14 +26,14 @@ const INSET_Y = 48;
 const PHOTO = 300;
 const PHOTO_ZOOM = 1;
 
-// Copper theme (the default `:root` palette in src/globals.css).
+// Indigo theme (the default `:root` palette in src/globals.css).
 const color = {
-  bg: "#0c0500",
-  primary: "#e8843a",
-  primaryLight: "#f4a96a",
-  secondary: "#38bdf8",
-  text: "#f0e0d0",
-  muted: "#c8a882",
+  bg: "#080818",
+  primary: "#686bf2",
+  primaryLight: "#a5b4fc",
+  secondary: "#34d399",
+  text: "#e0e0f5",
+  muted: "#8080b0",
 };
 
 type Style = Record<string, string | number>;
@@ -134,12 +134,12 @@ function card(photo: string | null): Node {
         color: color.text,
         lineHeight: 1.3,
       },
-      recruiter.headline,
+      profile.headline,
     ),
     h(
       "div",
       { display: "flex", flexWrap: "wrap", gap: 12, marginTop: 26 },
-      ...recruiter.meta.map((m, i) => pill(m, i === 0 ? color.primaryLight : color.secondary)),
+      ...profile.meta.map((m, i) => pill(m, i === 0 ? color.primaryLight : color.secondary)),
     ),
     h(
       "div",
@@ -275,7 +275,7 @@ export async function renderOgImage(root: string) {
 function cacheKey(root: string) {
   const hash = createHash("sha256");
   hash.update(readFileSync(fileURLToPath(import.meta.url)));
-  hash.update(JSON.stringify({ site, recruiter, impact, availability }));
+  hash.update(JSON.stringify({ site, profile, impact, availability }));
   hash.update(printResume.siteUrl);
   const photo = resolve(root, "public/og-photo.jpg");
   if (existsSync(photo)) {

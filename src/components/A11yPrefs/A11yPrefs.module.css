@@ -354,50 +354,28 @@
   border: 1px solid var(--white-a12);
 }
 
-.swatch[data-swatch="copper"] {
+.swatch[data-swatch="indigo"] {
   background:
-    radial-gradient(circle at 32% 38%, var(--swatch-copper-1) 0 28%, transparent 30%),
-    radial-gradient(circle at 68% 64%, var(--swatch-copper-2) 0 20%, transparent 22%), var(--swatch-copper-bg);
+    radial-gradient(circle at 32% 38%, var(--swatch-indigo-1) 0 28%, transparent 30%),
+    radial-gradient(circle at 68% 64%, var(--swatch-indigo-2) 0 20%, transparent 22%), var(--swatch-indigo-bg);
 }
 
-.swatch[data-swatch="night"] {
+.swatch[data-swatch="sunset"] {
   background:
-    radial-gradient(circle at 32% 38%, var(--swatch-night-1) 0 28%, transparent 30%),
-    radial-gradient(circle at 68% 64%, var(--swatch-night-2) 0 20%, transparent 22%), var(--swatch-night-bg);
+    radial-gradient(circle at 32% 38%, var(--swatch-sunset-1) 0 28%, transparent 30%),
+    radial-gradient(circle at 68% 64%, var(--swatch-sunset-2) 0 20%, transparent 22%), var(--swatch-sunset-bg);
 }
 
-.swatch[data-swatch="sakura"] {
+.swatch[data-swatch="arctic"] {
   background:
-    radial-gradient(circle at 32% 38%, var(--swatch-sakura-1) 0 28%, transparent 30%),
-    radial-gradient(circle at 68% 64%, var(--swatch-sakura-2) 0 20%, transparent 22%), var(--swatch-sakura-bg);
+    radial-gradient(circle at 32% 38%, var(--swatch-arctic-1) 0 28%, transparent 30%),
+    radial-gradient(circle at 68% 64%, var(--swatch-arctic-2) 0 20%, transparent 22%), var(--swatch-arctic-bg);
 }
 
 .swatch[data-swatch="auto"] {
-  background: conic-gradient(var(--swatch-sakura-1) 0 120deg, var(--swatch-copper-1) 0 240deg, var(--swatch-night-1) 0);
-}
-
-.statement {
-  display: block;
-  margin: 12px auto 0;
-  padding: 4px 0;
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  color: var(--text-secondary);
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: var(--white-a12);
-  text-underline-offset: 3px;
-}
-
-.statement:hover {
-  color: var(--cyan);
-  text-decoration-color: currentColor;
-}
-
-.statement:focus-visible {
-  outline: 2px solid var(--cyan);
-  outline-offset: 2px;
-  border-radius: 2px;
+  background: conic-gradient(
+    var(--swatch-arctic-1) 0 120deg,
+    var(--swatch-indigo-1) 0 240deg,
+    var(--swatch-sunset-1) 0
+  );
 }

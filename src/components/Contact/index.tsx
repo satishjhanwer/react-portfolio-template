@@ -1,21 +1,11 @@
-import { useState } from "react";
 import { m } from "framer-motion";
 import styles from "./Contact.module.css";
-import { contactCardCopy, openTo, email, heading, note, ctaArrow } from "../../i18n/content";
-import { CONTACT_FILES } from "../../utils/contactLinks";
-import type { AppCommand } from "../CommandPalette/commands";
+import { openTo, email, heading, note, ctaArrow } from "../../i18n/content";
 import { SectionHeader } from "../SectionHeader";
 import { useSectionInView } from "../../hooks/useSectionInView";
-import { buildGreeting } from "./greeting";
-import { TimezoneOverlap } from "./TimezoneOverlap";
 
-interface ContactProps {
-  onCommand?: (command: AppCommand) => void;
-}
-
-export function Contact({ onCommand }: ContactProps) {
+export function Contact() {
   const { ref, inView } = useSectionInView();
-  const [greeting] = useState(() => buildGreeting());
 
   return (
     <section id="contact" className="sec" ref={ref}>
@@ -32,7 +22,6 @@ export function Contact({ onCommand }: ContactProps) {
         </div>
 
         <p className={styles.note}>{note}</p>
-        <p className={styles.greeting}>{greeting}</p>
 
         <div className={styles.chips}>
           {openTo.map((tag) => (
@@ -45,19 +34,6 @@ export function Contact({ onCommand }: ContactProps) {
         <a href={`mailto:${email}`} className={styles.cta}>
           {email} {ctaArrow}
         </a>
-
-        <div className={styles.cardLinks}>
-          <a className={styles.cardLink} href={`/${CONTACT_FILES.vcard}`} download>
-            {contactCardCopy.save}
-          </a>
-          {onCommand && (
-            <button type="button" className={styles.cardLink} onClick={() => onCommand("open-qr")}>
-              {contactCardCopy.showQr}
-            </button>
-          )}
-        </div>
-
-        <TimezoneOverlap />
       </m.div>
     </section>
   );

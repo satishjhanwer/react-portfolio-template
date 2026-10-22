@@ -7,7 +7,6 @@ export interface Answers {
   jobTitle: string;
   domain: string;
   email: string;
-  timeZone: string;
   github: string;
   linkedin: string;
   x: string;
@@ -18,11 +17,9 @@ export const PLACEHOLDERS = {
   title: "Frontend Engineer",
   domain: "your-domain.com",
   email: "hello@your-domain.com",
-  timeZone: "Europe/London",
   user: "your-username",
 };
 
-const CONFIG = "src/site.config.ts";
 const SKIP = /^(README\.md|CLAUDE\.md|LICENSE|package-lock\.json|docs\/|scripts\/setup)/;
 const TEXT = /\.(ts|tsx|js|json|html|css|txt|xml|svg|md)$/;
 
@@ -31,15 +28,6 @@ export function cleanDomain(input: string) {
     .trim()
     .replace(/^https?:\/\//, "")
     .replace(/\/+$/, "");
-}
-
-export function isTimeZone(zone: string) {
-  try {
-    new Intl.DateTimeFormat("en", { timeZone: zone });
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 export function initialsOf(fullName: string) {
@@ -71,9 +59,7 @@ export function buildReplacements(a: Answers): [string, string][] {
     pairs.push([`x.com/${P.user}`, `x.com/${a.x}`]);
   }
   if (a.github) {
-    pairs.push([`github.com/${P.user}/${P.user}.github.io`, `github.com/${a.github}/${a.github}.github.io`]);
     pairs.push([`github.com/${P.user}`, `github.com/${a.github}`]);
-    pairs.push([`${P.user}.github.io`, `${a.github}.github.io`]);
   }
   return pairs;
 }
@@ -95,10 +81,7 @@ export function personalize(root: string, a: Answers, files = trackedTextFiles(r
   for (const file of files) {
     const path = resolve(root, file);
     const before = readFileSync(path, "utf-8");
-    let after = applyReplacements(before, pairs);
-    if (file === CONFIG) {
-      after = after.replace(`timeZone: "${PLACEHOLDERS.timeZone}"`, `timeZone: "${a.timeZone}"`);
-    }
+    const after = applyReplacements(before, pairs);
     if (after !== before) {
       writeFileSync(path, after);
       changed.push(file);

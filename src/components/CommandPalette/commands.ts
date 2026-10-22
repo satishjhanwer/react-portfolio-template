@@ -16,21 +16,10 @@ import {
 import type { CommandGroupId, Locale } from "../../types";
 import { canInstallApp } from "../../utils/pwa";
 import { getThemeChoice, type ThemeChoice } from "../../utils/theme";
-import { CONTACT_FILES } from "../../utils/contactLinks";
 import { locale } from "../../i18n/locale";
 import { locales } from "../../site.config";
 
-export type AppCommand =
-  | "open-recruiter"
-  | "open-audit"
-  | "open-prefs"
-  | "open-shortcuts"
-  | "open-qr"
-  | "open-trust"
-  | "open-colophon"
-  | "install-app"
-  | "print-resume"
-  | "toggle-retro";
+export type AppCommand = "open-prefs" | "open-shortcuts" | "install-app" | "print-resume" | "toggle-retro";
 
 export type CommandAction =
   | { type: "scroll"; target: string; fallback?: string }
@@ -86,24 +75,6 @@ const allCommands: Command[] = [
       ]
     : []),
   {
-    id: "action-recruiter",
-    group: "actions",
-    label: commandLabels.recruiter,
-    keywords: commandKeywords.recruiter,
-    hint: commandHints.recruiter,
-    glyph: commandGlyphs.recruiter,
-    action: { type: "app", command: "open-recruiter" },
-  },
-  {
-    id: "action-audit",
-    group: "actions",
-    label: commandLabels.audit,
-    keywords: commandKeywords.audit,
-    hint: commandHints.audit,
-    glyph: commandGlyphs.audit,
-    action: { type: "app", command: "open-audit" },
-  },
-  {
     id: "action-prefs",
     group: "actions",
     label: commandLabels.prefs,
@@ -120,24 +91,6 @@ const allCommands: Command[] = [
     hint: commandHints.shortcuts,
     glyph: commandGlyphs.shortcuts,
     action: { type: "app", command: "open-shortcuts" },
-  },
-  {
-    id: "action-trust",
-    group: "actions",
-    label: commandLabels.trust,
-    keywords: commandKeywords.trust,
-    hint: commandHints.trust,
-    glyph: commandGlyphs.trust,
-    action: { type: "app", command: "open-trust" },
-  },
-  {
-    id: "action-colophon",
-    group: "actions",
-    label: commandLabels.colophon,
-    keywords: commandKeywords.colophon,
-    hint: commandHints.colophon,
-    glyph: commandGlyphs.colophon,
-    action: { type: "app", command: "open-colophon" },
   },
   {
     id: "action-install",
@@ -167,24 +120,6 @@ const allCommands: Command[] = [
     hint: email,
     glyph: commandGlyphs.copy,
     action: { type: "copy", text: email, fallbackHref: mailto },
-  },
-  {
-    id: "action-save-contact",
-    group: "actions",
-    label: commandLabels.saveContact,
-    keywords: commandKeywords.saveContact,
-    hint: commandHints.saveContact,
-    glyph: commandGlyphs.contactCard,
-    action: { type: "href", href: `/${CONTACT_FILES.vcard}`, download: true },
-  },
-  {
-    id: "action-qr",
-    group: "actions",
-    label: commandLabels.showQr,
-    keywords: commandKeywords.showQr,
-    hint: commandHints.showQr,
-    glyph: commandGlyphs.qr,
-    action: { type: "app", command: "open-qr" },
   },
   {
     id: "action-email",
@@ -227,7 +162,7 @@ const allCommands: Command[] = [
       glyph: commandGlyphs.language,
       action: { type: "locale", locale: l },
     })),
-  ...(["auto", "copper", "night", "sakura"] as const).map<Command>((choice) => ({
+  ...(["auto", "indigo", "sunset", "arctic"] as const).map<Command>((choice) => ({
     id: `theme-${choice}`,
     group: "actions",
     label: commandLabels.theme(choice === "auto" ? a11yPrefsCopy.theme.auto : a11yPrefsCopy.theme.names[choice]),

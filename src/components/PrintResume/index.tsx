@@ -2,13 +2,12 @@ import type { ReactNode } from "react";
 import {
   about,
   awards,
-  contactCardCopy,
   educationNodes,
   email,
   experienceNodes,
   printResume,
+  profile,
   projects,
-  recruiter,
   repos,
   site,
   skillCategories,
@@ -16,7 +15,6 @@ import {
 } from "../../i18n/content";
 import { RichText } from "../RichText";
 import styles from "./PrintResume.module.css";
-import { CONTACT_FILES } from "../../utils/contactLinks";
 
 const bareUrl = (href: string) => href.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
@@ -32,7 +30,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 export function PrintResume() {
   const { sections } = printResume;
   const contacts = [
-    recruiter.location,
+    profile.location,
     email,
     printResume.siteUrl,
     ...socials.filter((s) => s.label === "GitHub" || s.label === "LinkedIn").map((s) => bareUrl(s.href)),
@@ -43,18 +41,9 @@ export function PrintResume() {
       <header className={styles.header}>
         <div>
           <h1 className={styles.name}>{site.name}</h1>
-          <p className={styles.headline}>{recruiter.headline}</p>
+          <p className={styles.headline}>{profile.headline}</p>
           <p className={styles.contacts}>{contacts.join("  ·  ")}</p>
         </div>
-        <figure className={styles.qr}>
-          <img
-            src={`/${CONTACT_FILES.qrSite}`}
-            alt={contactCardCopy.qrAlt(printResume.siteUrl)}
-            width={64}
-            height={64}
-          />
-          <figcaption>{contactCardCopy.printCaption}</figcaption>
-        </figure>
       </header>
 
       <Section title={sections.summary}>
@@ -65,7 +54,7 @@ export function PrintResume() {
 
       <Section title={sections.highlights}>
         <ul className={styles.bullets}>
-          {recruiter.highlightsHtml.map((h) => (
+          {profile.highlightsHtml.map((h) => (
             <li key={h}>
               <RichText html={h} />
             </li>

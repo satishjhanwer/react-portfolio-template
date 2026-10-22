@@ -83,24 +83,14 @@ describe("sections", () => {
     expect(screen.getAllByText(String(content.impact[0].value)).length).toBeGreaterThan(0);
   });
 
-  it("Projects links each card and offers the live audit", () => {
-    const onRunAudit = vi.fn();
-    render(withMotion(<Projects onRunAudit={onRunAudit} />));
+  it("Projects links each card", () => {
+    render(withMotion(<Projects />));
     for (const p of content.projects) {
       expect(document.getElementById(p.anchorId)).toBeTruthy();
     }
-    fireEvent.click(screen.getByRole("button", { name: new RegExp(content.a11yAudit.trigger) }));
-    expect(onRunAudit).toHaveBeenCalledOnce();
-    expect(document.querySelector("[data-a11y-demo-slot]")).toBeTruthy();
     for (const link of screen.queryAllByRole("link", { name: content.viewProjectLabel })) {
       expect(link.getAttribute("rel")).toBe("noopener noreferrer");
     }
-  });
-
-  it("Projects without an audit handler has no audit button or demo slot", () => {
-    render(withMotion(<Projects />));
-    expect(screen.queryByRole("button", { name: new RegExp(content.a11yAudit.trigger) })).toBeNull();
-    expect(document.querySelector("[data-a11y-demo-slot]")).toBeNull();
   });
 
   it("project cards tilt with the mouse and reset on leave", () => {
@@ -139,13 +129,11 @@ describe("sections", () => {
     }
   });
 
-  it("Contact offers the contact card and, with a handler, the QR code", () => {
-    const onCommand = vi.fn();
-    render(withMotion(<Contact onCommand={onCommand} />));
-    const save = screen.getByRole("link", { name: content.contactCardCopy.save });
-    expect(save.getAttribute("href")).toBe("/contact.vcf");
-    fireEvent.click(screen.getByRole("button", { name: content.contactCardCopy.showQr }));
-    expect(onCommand).toHaveBeenCalledWith("open-qr");
+  it("Contact links the email address", () => {
+    render(withMotion(<Contact />));
+    expect(screen.getByRole("link", { name: new RegExp(content.email) }).getAttribute("href")).toBe(
+      `mailto:${content.email}`,
+    );
   });
 
   it("Contact greets the visitor and links the email", () => {
@@ -319,7 +307,7 @@ describe("small components", () => {
     for (const a of content.awards) {
       expect(root.textContent).toContain(a.title);
     }
-    expect(root.querySelector("img")?.getAttribute("src")).toBe("/qr-site.svg");
+    expect(root.textContent).toContain(content.profile.headline);
   });
 });
 
