@@ -1,11 +1,13 @@
 {
-  "name": "Jane Doe - Portfolio",
-  "short_name": "Portfolio",
-  "description": "Software Engineer with X+ years of experience. Building performant, accessible web applications.",
+  "id": "/",
+  "name": "Jane Doe - Frontend Engineer",
+  "short_name": "Jane Doe",
+  "description": "Frontend engineer with {{YEARS_EXPERIENCE}} years of experience, building fast, accessible web apps.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#080818",
-  "theme_color": "#6366f1",
+  "theme_color": "#686bf2",
   "icons": [
     {
       "src": "/logo.svg",
@@ -13,10 +15,38 @@
       "type": "image/svg+xml"
     },
     {
-      "src": "/pwa-icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "description": "Jump to selected projects",
+      "url": "/#projects",
+      "icons": [{ "src": "/logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch",
+      "url": "/#contact",
+      "icons": [{ "src": "/logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Resume (PDF)",
+      "short_name": "Resume",
+      "description": "Open the resume",
+      "url": "/resume.pdf",
+      "icons": [{ "src": "/logo192.png", "sizes": "192x192" }]
     }
   ]
 }

@@ -144,5 +144,6 @@ vite.config.ts.timestamp-*
 
 .history
 
-# Claude Code local settings (machine-specific)
-.claude/settings.local.json
+# Test output
+coverage
+test-results

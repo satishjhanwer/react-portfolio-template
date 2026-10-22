@@ -1,17 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 36">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#34d399"/>
-    </linearGradient>
-  </defs>
-  <text
-    font-family="Inter, system-ui, -apple-system, sans-serif"
-    font-size="28"
-    font-weight="800"
-    letter-spacing="-1"
-    fill="url(#g)"
-    x="2"
-    y="28"
-  >&lt;/&gt;</text>
-</svg>
+<svg width="240" height="108" viewBox="0 0 240 108" xmlns="http://www.w3.org/2000/svg"><mask id="satori_om-id"><rect x="0" y="0" width="246" height="108" fill="#fff"/></mask><clipPath id="satori_bct-id-0"><path d="M31.3 86.9L31.3 86.9Q20.5 86.9 14.4 81.5Q8.4 76 8.4 66L8.4 66L8.4 62L23.9 62L23.9 66.2Q23.9 70.4 25.9 72.5Q27.8 74.6 31.3 74.6L31.3 74.6Q34.8 74.6 36.7 72.5Q38.7 70.4 38.7 66.1L38.7 66.1L38.7 20.5L54 20.5L54 65.9Q54 76 48 81.4Q42 86.9 31.3 86.9ZM84.7 86L84.7 86L60.6 86L60.6 20.5L84.7 20.5Q94.6 20.5 101.8 24.5Q109.1 28.4 113 35.7Q116.9 43.1 116.9 53.3Q116.9 63.5 113 70.8Q109.1 78.2 101.9 82.1Q94.6 86 84.7 86ZM76.1 33.8L76.1 72.7L84 72.7Q89.6 72.7 93.5 70.8Q97.4 68.9 99.4 64.6Q101.4 60.3 101.4 53.3Q101.4 46.2 99.3 41.9Q97.3 37.6 93.4 35.7Q89.5 33.8 83.8 33.8L83.8 33.8L76.1 33.8ZM113.4 86L157 86L157 97.3L113.4 97.3L113.4 86Z "/></clipPath><defs><pattern id="satori_pattern_id-0_0" x="0" y="0" width="1" height="1" patternUnits="objectBoundingBox"><linearGradient id="satori_biid-0_0" x1="-0.08698840154646068" y1="0.14304759365418004" x2="1.0869884015464608" y2="0.85695240634582" spreadMethod="pad"><stop offset="0%" stop-color="#686bf2"/><stop offset="100%" stop-color="#34d399"/></linearGradient><rect x="0" y="0" width="148" height="90" fill="url(#satori_biid-0_0)"/></pattern></defs><mask id="satori_om-id-0"><rect x="6" y="9" width="148" height="90" fill="#fff"/></mask><rect x="6" y="9" width="148" height="90" fill="url(#satori_pattern_id-0_0)" clip-path="url(#satori_bct-id-0)"/></svg>

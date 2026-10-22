@@ -4,14 +4,19 @@ A premium, data-driven developer portfolio built with **React**, **TypeScript**,
 
 ## ✨ Features
 
-- **Data-driven** - All content lives in `src/data/`. Edit text files, not code.
-- **3 auto-switching themes** - Indigo (day), Sunset (evening), Arctic (night). Customize or add your own.
-- **Framer Motion animations** - Scroll-triggered entrances with `prefers-reduced-motion` respect.
+- **Data-driven** - All content lives in `src/site.config.ts` and the language files. Edit data, not components.
+- **4 languages** - English, Spanish, French and Japanese, picked from the browser. Switch in the nav or with `?lang=es`.
+- **3 auto-switching themes** - Indigo (day), Sunset (evening), Arctic (night). Visitors can also pick one themselves.
+- **Command palette** - `Ctrl/⌘ + K` to jump to any section, project or profile, copy your email or switch theme.
+- **Printable résumé** - `Ctrl/⌘ + P` prints a clean résumé built from the same data, so it's never out of date.
+- **Accessibility preferences** - Text size, high contrast, readable font, reduced motion, underlined links and a colour-vision preview.
+- **Framer Motion animations** - Scroll-triggered entrances, tilt cards and a scroll-driven timeline, all off under `prefers-reduced-motion`.
 - **Lazy-loaded sections** - Code-split for fast initial loads.
-- **PWA-ready** - Service worker, manifest, offline support out of the box.
-- **SEO optimized** - Meta tags, Open Graph, JSON-LD structured data, sitemap.
-- **WCAG 2.1 AA accessible** - Semantic HTML, keyboard navigation, skip links.
+- **PWA-ready** - Service worker, manifest, offline page and an "update available" prompt out of the box.
+- **SEO optimized** - Meta tags, JSON-LD structured data, sitemap, and an Open Graph card generated at build time.
+- **WCAG 2.2 AA accessible** - Semantic HTML, keyboard navigation, skip links, contrast-checked in every theme.
 - **Mobile-first responsive** - Looks great on all screen sizes.
+- **Tested** - 351 Vitest tests at ~99% coverage.
 
 ## 🏁 Quick Start
 
@@ -31,38 +36,38 @@ npm run setup
 npm run dev
 ```
 
-The setup wizard will prompt for your name, title, domain, email, and social links then auto-update all the config files (`index.html`, `manifest.json`, `sitemap.xml`, etc.) for you.
+The setup wizard will prompt for your name, title, domain, email, and social links, then auto-update every file that uses them (`index.html`, `manifest.json`, `sitemap.xml`, the config, the tests, etc.) and regenerate your logo and icons.
 
 ## 📁 Project Structure
 
 ```txt
 ├── public/                 # Static assets
-│   ├── favicon.svg         # ← Replace with your favicon
-│   ├── logo.svg            # ← Replace with your logo
-│   ├── og-image.png        # ← Replace with your social card
-│   ├── resume.pdf          # ← Add your resume (optional)
+│   ├── favicon.svg         # Generated from your initials (npm run icons)
+│   ├── logo.svg            # Generated from your initials (npm run icons)
+│   ├── resume.pdf          # ← Replace with your resume (optional)
+│   ├── logos/              # ← Add company & school logos (optional)
+│   ├── og-photo.jpg        # ← Add a photo for the social card (optional)
 │   ├── manifest.json       # PWA manifest (auto-updated by setup)
 │   ├── sitemap.xml         # SEO sitemap (auto-updated by setup)
+│   ├── 404.html            # Not-found page
+│   ├── offline.html        # Shown when offline
 │   └── sw.js               # Service worker
 ├── src/
-│   ├── data/               # ★ YOUR CONTENT edit these files
-│   │   ├── hero.ts         # Name, title, tagline
-│   │   ├── about.ts        # Bio, key stats
-│   │   ├── skills.ts       # Skill categories & icons
-│   │   ├── projects.ts     # Project showcase
-│   │   ├── openSource.ts   # GitHub repositories
-│   │   ├── experience.ts   # Work history timeline
-│   │   ├── education.ts    # Education timeline
-│   │   ├── awards.ts       # Awards & recognition
-│   │   ├── contact.ts      # Email, CTA text
-│   │   ├── social.ts       # Social media links
-│   │   └── nav.ts          # Navigation labels
-│   ├── components/         # UI components (Nav & Footer auto-updated by setup)
+│   ├── site.config.ts      # ★ YOUR DATA: links, projects, jobs, skills, numbers
+│   ├── i18n/locales/       # ★ YOUR TEXT: one file per language
+│   │   ├── en.ts           # English (the source of truth)
+│   │   ├── es.ts           # Spanish
+│   │   ├── fr.ts           # French
+│   │   └── ja.ts           # Japanese
+│   ├── components/         # UI components, one folder each
+│   ├── assets/icons/       # Skill & social icon sprite
 │   ├── globals.css         # Design tokens & themes
 │   ├── App.tsx             # Main app layout
 │   └── main.tsx            # Entry point
 ├── scripts/
-│   └── setup.ts            # Interactive setup wizard
+│   ├── setup.ts            # Interactive setup wizard
+│   ├── icons.ts            # Logo & app icon generator
+│   └── og-image.ts         # Social card generator
 ├── index.html              # HTML entry (auto-updated by setup)
 └── vite.config.ts          # Build configuration
 ```
@@ -75,56 +80,61 @@ The setup wizard will prompt for your name, title, domain, email, and social lin
 npm run setup
 ```
 
-This auto-updates: `index.html` (title, meta, OG, JSON-LD), `manifest.json`, `sitemap.xml`, `robots.txt`, `LICENSE`, `favicon.svg`, and basic data in `hero.ts`, `contact.ts`, `social.ts`.
+This auto-updates: `index.html` (title, meta, JSON-LD), `manifest.json`, `sitemap.xml`, `robots.txt`, the 404 and offline pages, `LICENSE`, your name, initials, email and profiles in `site.config.ts`, the page titles in every language, and the tests. Then it regenerates `logo.svg`, `favicon.svg` and the app icons.
 
-### Step 2: Edit Data Files
+### Step 2: Edit Your Data and Text
 
-All your content lives in `src/data/`. Each file has doc comments explaining what to edit.
+Facts that don't change with language live in `src/site.config.ts`. The words live in `src/i18n/locales/en.ts`, under the same ids.
 
-| File            | What to Edit                                                    |
-| --------------- | --------------------------------------------------------------- |
-| `hero.ts`       | Your name, job title, tagline, CTA buttons, floating chips      |
-| `about.ts`      | Bio paragraphs, key stats (years, degree, etc.)                 |
-| `skills.ts`     | Skill categories, icons from [devicon.dev](https://devicon.dev) |
-| `projects.ts`   | Project titles, descriptions, tech tags, links                  |
-| `openSource.ts` | GitHub repos, star/fork counts, descriptions                    |
-| `experience.ts` | Work history entries (role, company, dates, description)        |
-| `education.ts`  | Education entries (degree, school, dates)                       |
-| `awards.ts`     | Awards and recognitions                                         |
-| `contact.ts`    | Email address, call-to-action messaging                         |
-| `social.ts`     | Social media profile URLs                                       |
+| What                         | `site.config.ts`                                                  | `locales/en.ts`                       |
+| ---------------------------- | ----------------------------------------------------------------- | ------------------------------------- |
+| Name, initials, career start | `site`, `hero`, `careerStart`                                     | `site.pageTitle`, `hero`              |
+| About & key numbers          | `stats`, `impact`                                                 | `about`, `stats`, `impact`            |
+| Skills                       | `skillCategories` (icons from [devicon.dev](https://devicon.dev)) | `skillCategories`                     |
+| Projects                     | `projects` (title, tags, link)                                    | `projects` (type, description)        |
+| Open source                  | `repos` (name, stars, forks, URL)                                 | `repos`                               |
+| Work history                 | `experienceNodes` (company, logo, current role)                   | `experienceNodes` (dates, role, text) |
+| Education & awards           | `educationNodes`, `awards`                                        | `educationNodes`, `awards`            |
+| Contact & socials            | `email`, `socials`, `availability`                                | `heading`, `note`, `openTo`           |
+| Résumé headline & highlights | `resumeUrl`                                                       | `profile`                             |
 
-> **Note:** `src/components/Nav/index.tsx` (logo initials & aria-label) and `src/components/Footer/index.tsx` (copyright name) are also updated automatically by the setup wizard.
+> **Note:** Years of experience are calculated from `careerStart`, so they never go stale.
 
-### Step 3: Replace Assets
+### Step 3: Translate (or Drop) Languages
 
-| Asset    | Location              | Notes                                                                                 |
-| -------- | --------------------- | ------------------------------------------------------------------------------------- |
-| OG Image | `public/og-image.png` | Recommended: 1200×630px. Shown when shared on social media.                           |
-| Resume   | `public/resume.pdf`   | Optional. Linked from hero CTA. Set `resumeUrl` to `null` in `experience.ts` to hide. |
-| Favicon  | `public/favicon.svg`  | Auto-generated by setup with your initials. Replace for a custom one.                 |
-| Logo     | `public/logo.svg`     | Shown in the navbar.                                                                  |
+After editing `en.ts`, copy your changes into `es.ts`, `fr.ts` and `ja.ts`. The build fails until every language has every key, so nothing gets missed.
 
-### Step 4: Customize Colors (Optional)
+Only want English? Remove the other codes from `locales` in `site.config.ts`, delete their loader lines in `src/i18n/content.ts`, and delete the files.
+
+### Step 4: Replace Assets
+
+| Asset        | Location              | Notes                                                                                 |
+| ------------ | --------------------- | ------------------------------------------------------------------------------------- |
+| Resume       | `public/resume.pdf`   | Optional. A placeholder ships. Set `resumeUrl` to `null` in `site.config.ts` to hide. |
+| Logos        | `public/logos/`       | Optional. Point `logo` on any job, school or award at the file.                       |
+| Social photo | `public/og-photo.jpg` | Optional. Added to the 1200×630 card shown when your link is shared.                  |
+| Favicon/logo | `public/*.svg`        | Generated from `site.initials`. Rerun `npm run icons` after changing them.            |
+
+### Step 5: Customize Colors (Optional)
 
 The design system is driven by CSS custom properties in `src/globals.css`. The template ships with 3 themes that auto-switch by time of day:
 
 | Theme                | Time        | Primary   | Accent    |
 | -------------------- | ----------- | --------- | --------- |
-| **Default (Indigo)** | 08:00–15:59 | `#6366f1` | `#34d399` |
+| **Default (Indigo)** | 08:00–15:59 | `#686bf2` | `#34d399` |
 | **Sunset**           | 16:00–23:59 | `#f59e0b` | `#fb7185` |
 | **Arctic**           | 00:00–07:59 | `#14b8a6` | `#38bdf8` |
 
-To change colors, update the `--purple` (primary) and `--cyan` (accent) variables and their alpha variants in `:root`. You can preview any theme instantly by adding `?theme=sunset` or `?theme=arctic` to your URL.
+To change colors, update the `--purple` (primary) and `--cyan` (accent) variables and their alpha variants in each theme block. Preview any theme instantly with `?theme=sunset` or `?theme=arctic`. Keep text at a 4.5:1 contrast ratio or better.
 
 ### Removing Sections
 
 Don't need Awards? Open Source? Simply:
 
 1. Remove the `<Awards />` line from `src/App.tsx`
-2. Remove the `{ label: "awards", id: "awards" }` entry from `src/data/nav.ts`
+2. Remove the `{ id: "awards" }` entry from `navLinks` in `src/site.config.ts`
 
-That's it the section will disappear completely.
+That's it the section disappears from the page, the nav and the command palette. The printed résumé has its own copy of each section in `src/components/PrintResume/index.tsx`; delete it there too.
 
 ## 🚀 Deployment
 
@@ -142,28 +152,32 @@ That's it the section will disappear completely.
 
 ### GitHub Pages
 
-1. Add a GitHub Action for deployment (see `.github/workflows/` if included)
-2. Or manually: `npm run build` and push the `dist/` folder
+1. Run `npm run build`
+2. Push the `dist/` folder to your `<username>.github.io` repo (or add a GitHub Action that does it)
 
 ## 🛠️ Development
 
 ```bash
-npm run dev          # Start dev server with HMR
-npm run build        # TypeScript check + production build
-npm run lint         # Run ESLint
-npm run format       # Format with Prettier
-npm run preview      # Preview production build locally
+npm run dev            # Start dev server with HMR
+npm run build          # TypeScript check + production build
+npm run preview        # Preview production build locally
+npm test               # Run the tests
+npm run test:coverage  # Tests with a coverage report
+npm run lint           # Run ESLint
+npm run format         # Format with Prettier
+npm run icons          # Regenerate logo & icons from your initials
 ```
 
 ## 📦 Tech Stack
 
 - **Framework**: React 19
 - **Language**: TypeScript
-- **Styling**: Vanilla CSS with CSS Custom Properties
-- **Animations**: Framer Motion
+- **Styling**: Vanilla CSS with CSS Custom Properties (CSS Modules)
+- **Animations**: Framer Motion, [Lenis](https://github.com/darkroomengineering/lenis) smooth scrolling
 - **Build Tool**: Vite
+- **Testing**: Vitest + Testing Library
 - **Icons**: [Devicon](https://devicon.dev)
-- **Font**: [Inter](https://rsms.me/inter/)
+- **Fonts**: [Inter](https://rsms.me/inter/) and [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk)
 
 ## 📄 License
 

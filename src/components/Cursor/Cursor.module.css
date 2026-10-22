@@ -1,0 +1,38 @@
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--purple-a60);
+  pointer-events: none;
+  z-index: 9998;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.3s ease;
+}
+
+.ringHover {
+  width: 46px;
+  height: 46px;
+  border-color: var(--cyan-a40);
+  box-shadow: 0 0 18px var(--cyan-a18);
+}
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--purple);
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 8px var(--purple-a70);
+  transition: opacity 0.3s ease;
+}

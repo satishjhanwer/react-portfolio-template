@@ -1,4 +1,4 @@
-import { navLinks } from "../data";
+import { navLinks } from "../i18n/content";
 
 export function SectionHeader({ id }: { id: string }) {
   const entry = navLinks.find((l) => l.id === id);

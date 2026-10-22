@@ -7,13 +7,7 @@ interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallback?: React.ReactNode;
 }
 
-export function Image({
-  src,
-  alt,
-  fallback,
-  className = "",
-  ...props
-}: ImageProps) {
+export function Image({ src, alt, fallback, className = "", ...props }: ImageProps) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 

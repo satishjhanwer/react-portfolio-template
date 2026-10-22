@@ -127,6 +127,19 @@
   }
 }
 
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 var(--cyan-a25);
+  }
+
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
+
 .hero {
   position: relative;
   padding: 80px 40px 80px;
@@ -134,6 +147,19 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.1' fill='white'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  opacity: 0.09;
+  -webkit-mask-image: radial-gradient(ellipse 75% 80% at 50% 40%, black 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 75% 80% at 50% 40%, black 30%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .meshBg {
@@ -184,6 +210,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .content {
@@ -191,12 +219,64 @@
   flex-direction: column;
 }
 
-.eyebrow {
-  font-size: var(--fs-sm);
-  letter-spacing: 0.2em;
+.statusRow {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  margin-bottom: 18px;
+  height: 20px;
+  padding: 0;
+  overflow: hidden;
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.statusRow:hover .statusText {
+  color: var(--text-page);
+}
+
+.statusRow:focus-visible {
+  overflow: visible;
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--cyan-a40);
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+
+.statusText {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--cyan);
-  margin-bottom: 24px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.statusSince {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.eyebrow {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -205,12 +285,13 @@
 .name {
   line-height: 0.9;
   margin-bottom: 32px;
+  font-family: var(--font-display);
 }
 
 .nThin {
   display: block;
   font-size: clamp(52px, 7vw, 92px);
-  font-weight: 200;
+  font-weight: 300;
   color: var(--white-a50);
   letter-spacing: -0.03em;
 }
@@ -218,14 +299,9 @@
 .nBold {
   display: block;
   font-size: clamp(52px, 7vw, 92px);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: -0.04em;
-  background: linear-gradient(
-    135deg,
-    var(--purple-light) 0%,
-    var(--purple) 40%,
-    var(--cyan) 100%
-  );
+  background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple) 40%, var(--cyan) 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -303,16 +379,19 @@
   border-radius: var(--radius-sm);
   font-size: var(--fs-md);
   font-weight: 500;
-  background: linear-gradient(135deg, var(--purple-dim), var(--purple));
-  color: var(--white);
+  background: var(--grad-btn);
+  color: var(--on-accent);
   border: none;
   cursor: pointer;
   letter-spacing: 0.03em;
-  transition: opacity 0.2s;
+  transition:
+    filter 0.2s,
+    transform 0.2s;
 }
 
 .btnPrimary:hover {
-  opacity: 0.85;
+  filter: brightness(1.1);
+  transform: translateY(-2px);
 }
 
 .btnGhost {
@@ -320,19 +399,23 @@
   border-radius: var(--radius-sm);
   font-size: var(--fs-md);
   font-weight: 500;
-  background: linear-gradient(135deg, var(--purple-dim), var(--purple));
-  color: var(--white);
-  border: none;
+  background: var(--white-a06);
+  color: var(--text-heading);
+  border: 1px solid var(--white-a10);
   cursor: pointer;
   letter-spacing: 0.03em;
   transition:
     opacity 0.2s,
-    transform 0.2s;
+    transform 0.2s,
+    background 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .btnGhost:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  background: var(--white-a08);
+  transform: translateY(-2px);
 }
 
 .visual {
@@ -348,12 +431,7 @@
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    var(--purple-a15) 0%,
-    var(--cyan-a08) 50%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, var(--purple-a15) 0%, var(--cyan-a08) 50%, transparent 70%);
   animation: pulseGlow 4s ease-in-out infinite;
 }
 

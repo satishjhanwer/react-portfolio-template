@@ -27,7 +27,7 @@
 }
 
 .bigMuted {
-  color: var(--white-a08);
+  color: var(--white-a40);
 }
 
 .bigGrad {
@@ -43,7 +43,7 @@
   font-size: var(--fs-lg);
   color: var(--text-muted);
   line-height: 1.9;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
   max-width: 480px;
 }
 
@@ -70,21 +70,21 @@
   align-items: center;
   padding: 15px 32px;
   border-radius: 12px;
-  background: var(--grad-full);
+  background: var(--grad-cta);
   background-size: 200% 200%;
   animation: gshift 4s ease infinite;
-  color: var(--white);
+  color: var(--on-accent);
   font-size: var(--fs-lg);
   font-weight: 600;
   text-decoration: none;
   letter-spacing: 0.02em;
   transition:
-    opacity 0.2s,
+    filter 0.2s,
     transform 0.2s;
 }
 
 .cta:hover {
-  opacity: 0.85;
+  filter: brightness(1.1);
   transform: translateY(-2px);
 }
 
