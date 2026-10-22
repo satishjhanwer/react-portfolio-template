@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   type Answers,
+  addCopyright,
   applyReplacements,
   buildReplacements,
   cleanDomain,
@@ -47,14 +48,24 @@ describe("setup", () => {
     expect(run("https://x.com/your-username")).toBe("https://x.com/your-username");
   });
 
-  it("rewrites files on disk and fills in the licence", () => {
+  it("rewrites files on disk and adds the user's copyright to the licence", () => {
     const root = mkdtempSync(join(tmpdir(), "setup-"));
     writeFileSync(join(root, "a.ts"), 'name: "Jane Doe"');
     writeFileSync(join(root, "b.ts"), "untouched");
-    writeFileSync(join(root, "LICENSE"), "Copyright (c) [YEAR] [YOUR NAME]");
+    writeFileSync(join(root, "LICENSE"), "MIT License\n\nCopyright (c) 2026 Template Author\n");
     expect(personalize(root, answers, ["a.ts", "b.ts"])).toEqual(["a.ts", "LICENSE"]);
     expect(readFileSync(join(root, "a.ts"), "utf-8")).toBe('name: "Ada Lovelace"');
-    expect(readFileSync(join(root, "LICENSE"), "utf-8")).toBe(`Copyright (c) ${new Date().getFullYear()} Ada Lovelace`);
+    expect(readFileSync(join(root, "LICENSE"), "utf-8")).toBe(
+      `MIT License\n\nCopyright (c) ${new Date().getFullYear()} Ada Lovelace\nCopyright (c) 2026 Template Author\n`,
+    );
+  });
+});
+
+describe("addCopyright", () => {
+  it("doesn't add the same line twice", () => {
+    const once = addCopyright("Copyright (c) 2026 Template Author", "Ada Lovelace", 2027);
+    expect(once).toBe("Copyright (c) 2027 Ada Lovelace\nCopyright (c) 2026 Template Author");
+    expect(addCopyright(once, "Ada Lovelace", 2027)).toBe(once);
   });
 });
 
