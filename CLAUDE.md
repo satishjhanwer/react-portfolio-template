@@ -14,7 +14,7 @@ npm run icons                         # regenerate the logo, favicon and app ico
 
 ## Customising the template
 
-- **Placeholders:** the template ships as "Jane Doe" with `hello@your-domain.com`, `your-domain.com` and `github.com/your-username`. `npm run setup` ([scripts/setup.ts](scripts/setup.ts), logic in `setup-lib.ts`) swaps these tokens in every tracked text file, tests included, so they stay in sync. It also fills in the licence and reruns `icons`. Keep the tokens exact if you edit placeholder text.
+- **Placeholders:** the template ships as "Jane Doe" with `hello@your-domain.com`, `your-domain.com` and `github.com/your-username`. `npm run setup` ([scripts/setup.ts](scripts/setup.ts), logic in `setup-lib.ts`) swaps these tokens in every tracked text file, tests included, so they stay in sync. It also adds the user's copyright line above the template's in `LICENSE` (MIT requires keeping the original) and reruns `icons`. Keep the tokens exact if you edit placeholder text.
 - **Content** is in `src/site.config.ts` and the four locale files (see Content below). Logos (`public/logos/`), `public/og-photo.jpg` and a real `public/resume.pdf` are optional; `resumeUrl: null` hides the résumé buttons.
 - **Hosting:** any static host. `npm run build` and upload `dist/`.
 

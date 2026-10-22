@@ -88,11 +88,15 @@ export function personalize(root: string, a: Answers, files = trackedTextFiles(r
     }
   }
   const license = resolve(root, "LICENSE");
-  writeFileSync(
-    license,
-    readFileSync(license, "utf-8")
-      .replace("[YEAR]", String(new Date().getFullYear()))
-      .replace("[YOUR NAME]", a.fullName),
-  );
+  writeFileSync(license, addCopyright(readFileSync(license, "utf-8"), a.fullName, new Date().getFullYear()));
   return [...changed, "LICENSE"];
+}
+
+// MIT requires keeping the template's notice, so the user's line goes above it.
+export function addCopyright(license: string, name: string, year: number) {
+  const line = `Copyright (c) ${year} ${name}`;
+  if (license.includes(line)) {
+    return license;
+  }
+  return license.replace(/^Copyright \(c\)/m, `${line}\nCopyright (c)`);
 }

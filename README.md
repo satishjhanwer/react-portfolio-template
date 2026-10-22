@@ -82,7 +82,24 @@ The setup wizard will prompt for your name, title, domain, email, and social lin
 npm run setup
 ```
 
-This auto-updates: `index.html` (title, meta, JSON-LD), `manifest.json`, `sitemap.xml`, `robots.txt`, the 404 and offline pages, `LICENSE`, your name, initials, email and profiles in `site.config.ts`, the page titles in every language, and the tests. Then it regenerates `logo.svg`, `favicon.svg` and the app icons.
+This auto-updates: `index.html` (title, meta, JSON-LD), `manifest.json`, `sitemap.xml`, `robots.txt`, the 404 and offline pages, your name, initials, email and profiles in `site.config.ts`, the page titles in every language, and the tests. It adds your copyright line to `LICENSE`. Then it regenerates `logo.svg`, `favicon.svg` and the app icons.
+
+#### Replace the template author's details
+
+Setup doesn't touch the files that belong to the template project itself. Update these by hand so your repo points to you, not to the template's author:
+
+| File                                                                 | What to change                                                                                                    |
+| -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `package.json`                                                       | `name`, `description`, `author`, `homepage`, `repository` and `bugs`                                              |
+| `LICENSE`                                                            | Nothing to remove. Setup adds your line; keep the template's copyright line below it, as the MIT licence requires |
+| `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `SUPPORT.md` | Delete them, or replace the template's links and contact with yours                                               |
+| `.github/ISSUE_TEMPLATE/`, `.github/PULL_REQUEST_TEMPLATE.md`        | Delete them, or adapt them to your repo                                                                           |
+
+To check that nothing is left, search for the template author's name and repo:
+
+```bash
+git grep -n -i -e "satish" -e "jhanwer" -e "react-portfolio-template" -- ':!LICENSE' ':!package-lock.json' ':!README.md'
+```
 
 ### Step 2: Edit Your Data and Text
 
@@ -185,7 +202,7 @@ npm run icons          # Regenerate logo & icons from your initials
 
 Improvements to the template are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) and the [Code of Conduct](./CODE_OF_CONDUCT.md), and report security issues as described in [SECURITY.md](./SECURITY.md).
 
-> **Using this as your own portfolio?** The community files (`CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `SUPPORT.md` and the issue and PR templates in `.github/`) are for this template repo. Delete or adapt them in your copy. The CI workflow and Dependabot config in `.github/` are worth keeping.
+> **Using this as your own portfolio?** The community files (`CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `SUPPORT.md` and the issue and PR templates in `.github/`) are for this template repo. Delete or adapt them in your copy (see [Replace the template author's details](#replace-the-template-authors-details)). The CI workflow and Dependabot config in `.github/` are worth keeping.
 
 ## 📄 License
 
